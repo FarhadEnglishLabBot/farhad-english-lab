@@ -1,5 +1,5 @@
 
-const CACHE_NAME = "farhad-english-lab-v1";
+const CACHE_NAME = "farhad-english-lab-v2";
 
 const FILES_TO_CACHE = [
   "./",
