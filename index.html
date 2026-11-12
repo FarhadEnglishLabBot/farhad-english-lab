@@ -1,14 +1,230 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fa" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Farhad's English Lab</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#101522">
+<title>Farhad's English Lab</title>
+
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;
+ background:#101522;
+ color:#f1f5f9;
+ font-family:Tahoma,Arial,sans-serif;
+}
+header{
+ padding:25px 20px;
+ background:linear-gradient(135deg,#192b46,#182033);
+ border-bottom:1px solid #29364b;
+}
+.logo{font-size:23px;font-weight:bold;direction:ltr;text-align:right}
+.sub{color:#94a3b8;font-size:12px;margin-top:8px}
+.container{padding:18px;max-width:650px;margin:auto}
+h2{font-size:19px;margin:10px 0 16px}
+.tabs{
+ display:grid;grid-template-columns:repeat(3,1fr);
+ gap:8px;margin-bottom:22px
+}
+.tab{
+ border:1px solid #334155;background:#1c2738;
+ color:#cbd5e1;padding:12px 5px;border-radius:12px;
+ font-size:13px;cursor:pointer
+}
+.tab.active{background:#2563eb;color:white;border-color:#2563eb}
+.panel{display:none}
+.panel.active{display:block}
+input{
+ width:100%;padding:15px;border-radius:12px;
+ background:#1c2738;border:1px solid #334155;
+ color:white;font-size:15px;outline:none;margin-bottom:14px
+}
+input:focus{border-color:#60a5fa}
+.card{
+ background:#1b2638;border:1px solid #2d3b50;
+ border-radius:15px;padding:17px;margin-bottom:12px
+}
+.word{font-size:23px;font-weight:bold;direction:ltr;text-align:left}
+.ipa{color:#60a5fa;direction:ltr;text-align:left;margin-top:8px}
+.meaning{font-size:17px;margin-top:13px}
+.example{
+ color:#cbd5e1;background:#111b2a;padding:12px;
+ border-radius:10px;margin-top:13px;
+ direction:ltr;text-align:left;line-height:1.8
+}
+.small{font-size:12px;color:#94a3b8;margin-top:9px}
+.actions{display:flex;gap:8px;margin-top:14px}
+button{
+ cursor:pointer;border:0;border-radius:10px;
+ padding:11px 14px;font-size:13px
+}
+.favorite{background:#334155;color:white}
+.primary{background:#2563eb;color:white}
+.result{margin-top:10px}
+.question{font-size:19px;margin:18px 0}
+.option{
+ display:block;width:100%;text-align:right;
+ background:#253247;color:white;margin:9px 0;
+ padding:14px;border:1px solid #3b4b62
+}
+.option:disabled{opacity:1}
+.correct{background:#166534!important}
+.wrong{background:#991b1b!important}
+.hidden{display:none}
+footer{text-align:center;color:#64748b;font-size:11px;padding:25px}
+</style>
 </head>
+
 <body>
-  <h1>Welcome to Farhad's English Lab!</h1>
-  <p>Your English learning journey starts here.</p>
+<header>
+ <div class="logo">📘 Farhad's English Lab</div>
+ <div class="sub">YOUR PERSONAL ENGLISH LEARNING SPACE</div>
+</header>
+
+<div class="container">
+ <div class="tabs">
+  <button class="tab active" onclick="showPanel('dictionary',this)">📖 دیکشنری</button>
+  <button class="tab" onclick="showPanel('quiz',this)">🧠 آزمون</button>
+  <button class="tab" onclick="showPanel('favorites',this)">⭐ علاقه‌مندی‌ها</button>
+ </div>
+
+ <section id="dictionary" class="panel active">
+  <h2>دیکشنری انگلیسی</h2>
+  <input id="search" placeholder="کلمه انگلیسی یا معنی فارسی را بنویس..." oninput="searchWords()">
+  <div id="wordList"></div>
+ </section>
+
+ <section id="quiz" class="panel">
+  <h2>تمرین واژگان</h2>
+  <div class="card">
+   <div class="small">معنی کلمه زیر را انتخاب کن:</div>
+   <div class="question" id="question"></div>
+   <div id="options"></div>
+   <div id="feedback" class="result"></div>
+   <button class="primary" onclick="nextQuestion()">سؤال بعدی ←</button>
+  </div>
+ </section>
+
+ <section id="favorites" class="panel">
+  <h2>لغت‌های موردعلاقه ⭐</h2>
+  <div id="favoriteList"></div>
+ </section>
+</div>
+
+<footer>Farhad's English Lab · Learn something new every day</footer>
+
+<script>
+const words = [
+ {w:"Ability",p:"/əˈbɪləti/",m:"توانایی",e:"She has the ability to learn quickly.",l:"A2"},
+ {w:"Achieve",p:"/əˈtʃiːv/",m:"به دست آوردن، موفق شدن",e:"You can achieve your goals.",l:"B1"},
+ {w:"Always",p:"/ˈɔːlweɪz/",m:"همیشه",e:"I always drink coffee in the morning.",l:"A1"},
+ {w:"Beautiful",p:"/ˈbjuːtɪfəl/",m:"زیبا",e:"This is a beautiful place.",l:"A1"},
+ {w:"Believe",p:"/bɪˈliːv/",m:"باور داشتن",e:"I believe in you.",l:"A2"},
+ {w:"Brave",p:"/breɪv/",m:"شجاع",e:"The brave man helped the child.",l:"A2"},
+ {w:"Careful",p:"/ˈkerfəl/",m:"مراقب، بااحتیاط",e:"Be careful when you cross the street.",l:"A2"},
+ {w:"Change",p:"/tʃeɪndʒ/",m:"تغییر دادن، تغییر",e:"People can change.",l:"A1"},
+ {w:"Choose",p:"/tʃuːz/",m:"انتخاب کردن",e:"You can choose your favorite book.",l:"A1"},
+ {w:"Comfortable",p:"/ˈkʌmftərbəl/",m:"راحت",e:"This chair is very comfortable.",l:"A2"},
+ {w:"Create",p:"/kriˈeɪt/",m:"خلق کردن، ساختن",e:"I want to create something new.",l:"B1"},
+ {w:"Different",p:"/ˈdɪfərənt/",m:"متفاوت",e:"We have different ideas.",l:"A1"},
+ {w:"Difficult",p:"/ˈdɪfɪkəlt/",m:"دشوار، سخت",e:"English is not always difficult.",l:"A1"},
+ {w:"Dream",p:"/driːm/",m:"رویا، خواب دیدن",e:"Never stop following your dreams.",l:"A1"},
+ {w:"Enough",p:"/ɪˈnʌf/",m:"کافی",e:"I have enough time.",l:"A2"},
+ {w:"Experience",p:"/ɪkˈspɪriəns/",m:"تجربه",e:"Learning English is a great experience.",l:"B1"},
+ {w:"Friendly",p:"/ˈfrendli/",m:"دوستانه، خوش‌برخورد",e:"Our teacher is very friendly.",l:"A2"},
+ {w:"Improve",p:"/ɪmˈpruːv/",m:"بهبود دادن، پیشرفت کردن",e:"I want to improve my English.",l:"A2"},
+ {w:"Journey",p:"/ˈdʒɜːrni/",m:"سفر، مسیر",e:"Life is a long journey.",l:"B1"},
+ {w:"Knowledge",p:"/ˈnɑːlɪdʒ/",m:"دانش، آگاهی",e:"Knowledge is important.",l:"B1"}
+];
+
+let favorites = JSON.parse(localStorage.getItem("farhadFavorites") || "[]");
+let current = 0;
+let answered = false;
+
+function showPanel(id,btn){
+ document.querySelectorAll(".panel").forEach(p=>p.classList.remove("active"));
+ document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));
+ document.getElementById(id).classList.add("active");
+ btn.classList.add("active");
+ if(id==="favorites") renderFavorites();
+ if(id==="quiz") nextQuestion();
+}
+
+function makeCard(word){
+ const saved=favorites.includes(word.w);
+ return `<div class="card">
+  <div class="word">${word.w}</div>
+  <div class="ipa">${word.p} · ${word.l}</div>
+  <div class="meaning">${word.m}</div>
+  <div class="example">${word.e}</div>
+  <div class="actions">
+   <button class="favorite" onclick="toggleFavorite('${word.w}')">
+   ${saved?"★ ذخیره شده":"☆ افزودن به علاقه‌مندی‌ها"}
+   </button>
+  </div>
+ </div>`;
+}
+
+function searchWords(){
+ const q=document.getElementById("search").value.trim().toLowerCase();
+ const found=words.filter(x=>x.w.toLowerCase().includes(q)||x.m.includes(q));
+ document.getElementById("wordList").innerHTML=
+ found.length?found.map(makeCard).join(""):"<p>کلمه‌ای پیدا نشد.</p>";
+}
+
+function toggleFavorite(name){
+ if(favorites.includes(name)){
+  favorites=favorites.filter(x=>x!==name);
+ }else{
+  favorites.push(name);
+ }
+ localStorage.setItem("farhadFavorites",JSON.stringify(favorites));
+ searchWords();
+ renderFavorites();
+}
+
+function renderFavorites(){
+ const list=words.filter(x=>favorites.includes(x.w));
+ document.getElementById("favoriteList").innerHTML=
+ list.length?list.map(makeCard).join(""):"<p>هنوز کلمه‌ای ذخیره نکردی.</p>";
+}
+
+function nextQuestion(){
+ answered=false;
+ const w=words[Math.floor(Math.random()*words.length)];
+ current=w;
+ document.getElementById("question").textContent=w.w;
+ document.getElementById("feedback").textContent="";
+ let choices=[w.m];
+ while(choices.length<4){
+  let x=words[Math.floor(Math.random()*words.length)].m;
+  if(!choices.includes(x))choices.push(x);
+ }
+ choices.sort(()=>Math.random()-.5);
+ document.getElementById("options").innerHTML=choices.map(x=>
+ `<button class="option" onclick="checkAnswer(this,'${x.replace(/'/g,"\\'")}')">${x}</button>`
+ ).join("");
+}
+
+function checkAnswer(btn,answer){
+ if(answered)return;
+ answered=true;
+ const buttons=document.querySelectorAll(".option");
+ buttons.forEach(b=>{
+  b.disabled=true;
+  if(b.textContent===current.m)b.classList.add("correct");
+ });
+ if(answer===current.m){
+  document.getElementById("feedback").textContent="آفرین! پاسخ درست بود. 🎉";
+ }else{
+  btn.classList.add("wrong");
+  document.getElementById("feedback").textContent="اشکالی نداره! جواب درست: "+current.m;
+ }
+}
+
+searchWords();
+</script>
 </body>
 </html>
-
