@@ -1,6 +1,7 @@
 
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
+<link rel="manifest" href="./manifest.json"> 
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -225,6 +226,15 @@ function checkAnswer(btn,answer){
 }
 
 searchWords();
+</script>
+ <script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("./sw.js")
+      .then(() => console.log("Offline mode enabled!"))
+      .catch(error => console.error("SW Error:", error));
+  });
+}
 </script>
 </body>
 </html>
