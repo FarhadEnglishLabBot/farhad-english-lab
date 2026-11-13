@@ -154,7 +154,7 @@ header{
   gap:10px;
   font-size:13px;
 }
-.progress-number{color:var(--gold);font-size:12px}
+.progress-number{color:var(--gold);font-size:15px;font-weight:bold}
 .progress-track{
   height:7px;
   background:#344258;
@@ -229,6 +229,7 @@ h2{font-size:19px;margin:5px 0 15px}
   font-size:11px;
   color:var(--muted);
   margin-top:7px;
+  line-height:1.8;
 }
 .action-btn,.primary,.option{
   border:0;
@@ -520,10 +521,35 @@ footer{
 
 <section id="progressView" class="view">
   <button class="back" onclick="goHome()" data-i18n="back">← بازگشت به خانه</button>
-  <div class="coming">
-    <div class="big">📊</div>
-    <h2 data-i18n="progress">پیشرفت من</h2>
-    <span data-i18n="coming">این بخش در مرحله بعدی توسعه ساخته می‌شه.</span>
+
+  <h2 data-i18n="progress">پیشرفت من</h2>
+
+  <div class="card">
+    <div class="small" data-i18n="statsTitle">آمار کلی آزمون‌های من</div>
+
+    <div class="progress-head" style="margin-top:18px">
+      <strong data-i18n="scoreLabel">امتیاز کل</strong>
+      <span class="progress-number" id="statScore">0</span>
+    </div>
+
+    <div class="progress-head" style="margin-top:20px">
+      <strong data-i18n="correctLabel">پاسخ‌های درست</strong>
+      <span id="statCorrect">0</span>
+    </div>
+
+    <div class="progress-head" style="margin-top:20px">
+      <strong data-i18n="wrongLabel">پاسخ‌های غلط</strong>
+      <span id="statWrong">0</span>
+    </div>
+
+    <div class="progress-head" style="margin-top:20px">
+      <strong data-i18n="accuracyLabel">درصد موفقیت</strong>
+      <span class="progress-number" id="statAccuracy">0%</span>
+    </div>
+  </div>
+
+  <div class="small" data-i18n="statsNote">
+    آمار آزمون‌ها به‌صورت خودکار ذخیره می‌شود.
   </div>
 </section>
 
@@ -607,7 +633,13 @@ fa:{
   saved:"★ ذخیره شده",
   save:"☆ افزودن به علاقه‌مندی‌ها",
   right:"آفرین! پاسخ درست بود. 🎉",
-  wrong:"اشکالی نداره! جواب درست: "
+  wrong:"اشکالی نداره! جواب درست: ",
+  statsTitle:"آمار کلی آزمون‌های من",
+  scoreLabel:"امتیاز کل",
+  correctLabel:"پاسخ‌های درست",
+  wrongLabel:"پاسخ‌های غلط",
+  accuracyLabel:"درصد موفقیت",
+  statsNote:"آمار آزمون‌ها به‌صورت خودکار ذخیره می‌شود."
 },
 en:{
   tagline:"Your personal English learning space",
@@ -654,7 +686,13 @@ en:{
   saved:"★ Saved",
   save:"☆ Add to favorites",
   right:"Great! That's correct. 🎉",
-  wrong:"Not quite! Correct answer: "
+  wrong:"Not quite! Correct answer: ",
+  statsTitle:"My Quiz Statistics",
+  scoreLabel:"Total Score",
+  correctLabel:"Correct Answers",
+  wrongLabel:"Wrong Answers",
+  accuracyLabel:"Accuracy",
+  statsNote:"Your quiz statistics are saved automatically."
 }
 };
 
@@ -679,6 +717,51 @@ let current = null;
 let answered = false;
 let currentChoices = [];
 
+/* ---------------- QUIZ STATISTICS ---------------- */
+
+let quizStats = readStorage("farhadQuizStats", {
+  correct:0,
+  wrong:0,
+  score:0
+});
+
+if(
+  !quizStats ||
+  !Number.isFinite(quizStats.correct) ||
+  !Number.isFinite(quizStats.wrong) ||
+  !Number.isFinite(quizStats.score)
+){
+  quizStats = {
+    correct:0,
+    wrong:0,
+    score:0
+  };
+}
+
+function saveQuizStats(){
+  try{
+    localStorage.setItem(
+      "farhadQuizStats",
+      JSON.stringify(quizStats)
+    );
+  }catch(error){
+    console.warn("Could not save quiz stats:",error);
+  }
+}
+
+function updateQuizStats(){
+  const total = quizStats.correct + quizStats.wrong;
+
+  const accuracy = total > 0
+    ? Math.round((quizStats.correct / total) * 100)
+    : 0;
+
+  document.getElementById("statScore").textContent = quizStats.score;
+  document.getElementById("statCorrect").textContent = quizStats.correct;
+  document.getElementById("statWrong").textContent = quizStats.wrong;
+  document.getElementById("statAccuracy").textContent = accuracy + "%";
+}
+
 /* ---------------- HELPERS ---------------- */
 
 function t(key){
@@ -687,9 +770,9 @@ function t(key){
 
 function saveFavorites(){
   try{
-    localStorage.setItem("farhadFavorites", JSON.stringify(favorites));
+    localStorage.setItem("farhadFavorites",JSON.stringify(favorites));
   }catch(error){
-    console.warn("Could not save favorites:", error);
+    console.warn("Could not save favorites:",error);
   }
 }
 
@@ -714,15 +797,16 @@ function applyLanguage(){
   searchWords();
   renderFavorites();
   updateProgress();
+  updateQuizStats();
 }
 
-document.getElementById("languageToggle").addEventListener("click", ()=>{
+document.getElementById("languageToggle").addEventListener("click",()=>{
   currentLang = currentLang === "fa" ? "en" : "fa";
 
   try{
-    localStorage.setItem("farhadLanguage", currentLang);
+    localStorage.setItem("farhadLanguage",currentLang);
   }catch(error){
-    console.warn("Could not save language:", error);
+    console.warn("Could not save language:",error);
   }
 
   applyLanguage();
@@ -743,6 +827,7 @@ function openView(id){
   if(id === "favoritesView") renderFavorites();
   if(id === "quizView") nextQuestion();
   if(id === "dictionaryView") searchWords();
+  if(id === "progressView") updateQuizStats();
 
   window.scrollTo(0,0);
 }
@@ -789,11 +874,11 @@ function searchWords(){
     : `<p class="empty">${t("notFound")}</p>`;
 }
 
-document.getElementById("search").addEventListener("input", searchWords);
+document.getElementById("search").addEventListener("input",searchWords);
 
 function toggleFavorite(name){
   if(favorites.includes(name)){
-    favorites = favorites.filter(item => item !== name);
+    favorites = favorites.filter(item=>item !== name);
   }else{
     favorites.push(name);
   }
@@ -807,7 +892,7 @@ function renderFavorites(){
   const container = document.getElementById("favoriteList");
   if(!container) return;
 
-  const savedWords = words.filter(word => favorites.includes(word.w));
+  const savedWords = words.filter(word=>favorites.includes(word.w));
 
   container.innerHTML = savedWords.length
     ? savedWords.map(makeCard).join("")
@@ -839,13 +924,13 @@ function nextQuestion(){
   /* Shuffle answers */
   for(let i = currentChoices.length - 1; i > 0; i--){
     const j = Math.floor(Math.random() * (i + 1));
-    [currentChoices[i], currentChoices[j]] =
-      [currentChoices[j], currentChoices[i]];
+    [currentChoices[i],currentChoices[j]] =
+      [currentChoices[j],currentChoices[i]];
   }
 
   const optionsContainer = document.getElementById("options");
 
-  optionsContainer.innerHTML = currentChoices.map((choice, index) => `
+  optionsContainer.innerHTML = currentChoices.map((choice,index)=>`
     <button
       class="option"
       type="button"
@@ -859,7 +944,7 @@ function nextQuestion(){
   Click handling is attached ONCE to the options container.
   It continues working even when the options are replaced.
 */
-document.getElementById("options").addEventListener("click", function(event){
+document.getElementById("options").addEventListener("click",function(event){
   const button = event.target.closest("button.option");
 
   if(!button || !this.contains(button)) return;
@@ -870,13 +955,24 @@ document.getElementById("options").addEventListener("click", function(event){
 
   if(typeof selectedAnswer !== "string") return;
 
-  checkAnswer(button, selectedAnswer);
+  checkAnswer(button,selectedAnswer);
 });
 
-function checkAnswer(button, answer){
+function checkAnswer(button,answer){
   if(answered || !current) return;
 
   answered = true;
+
+  /* Update statistics */
+  if(answer === current.m){
+    quizStats.correct++;
+    quizStats.score += 10;
+  }else{
+    quizStats.wrong++;
+  }
+
+  saveQuizStats();
+  updateQuizStats();
 
   const optionButtons = document.querySelectorAll("#options .option");
 
@@ -901,7 +997,7 @@ function checkAnswer(button, answer){
       : t("wrong") + current.m;
 }
 
-document.getElementById("nextQuestionButton").addEventListener("click", nextQuestion);
+document.getElementById("nextQuestionButton").addEventListener("click",nextQuestion);
 
 /* ---------------- PROGRESS ---------------- */
 
@@ -922,10 +1018,10 @@ function updateProgress(){
 applyLanguage();
 
 if("serviceWorker" in navigator){
-  window.addEventListener("load", ()=>{
+  window.addEventListener("load",()=>{
     navigator.serviceWorker.register("./sw.js")
       .then(()=>console.log("Offline mode enabled!"))
-      .catch(error=>console.error("Service Worker Error:", error));
+      .catch(error=>console.error("Service Worker Error:",error));
   });
 }
 </script>
