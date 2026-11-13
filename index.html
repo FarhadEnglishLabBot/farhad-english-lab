@@ -12,9 +12,9 @@
 
 <style>
 :root{
-  --bg:#101522;--surface:#192438;--surface2:#202e44;
-  --border:#2d3d55;--text:#f1f5f9;--muted:#9aa9bd;
-  --gold:#e9c46a;--blue:#3978df;--green:#22c55e;
+--bg:#101522;--surface:#192438;--surface2:#202e44;
+--border:#2d3d55;--text:#f1f5f9;--muted:#9aa9bd;
+--gold:#e9c46a;--blue:#3978df;--green:#22c55e
 }
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--text);font-family:Tahoma,Arial,sans-serif;min-height:100vh}
@@ -89,122 +89,203 @@ h3{font-size:15px;margin:8px 0 12px}
 .sound-card button{margin-top:10px}
 .coming{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;text-align:center;line-height:2}
 .coming .big{font-size:35px}
+
+/* GRAMMAR ACADEMY */
+.grammar-hero{background:linear-gradient(130deg,#263c5b,#1b293e);border:1px solid #465a76;border-radius:17px;padding:18px;margin-bottom:15px}
+.grammar-hero .hero-icon{font-size:32px}
+.grammar-hero h2{margin:9px 0}
+.grammar-hero p{font-size:12px;color:#cbd5e1;line-height:1.9;margin:0}
+.grammar-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:13px 0}
+.grammar-stat{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:12px;text-align:center}
+.grammar-stat strong{display:block;color:var(--gold);font-size:19px}
+.grammar-stat span{font-size:10px;color:var(--muted)}
+.grammar-search{margin:12px 0}
+.grammar-category{display:flex;align-items:center;gap:12px;background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:13px;margin-bottom:9px;text-align:right;color:var(--text);width:100%}
+.grammar-category:active{transform:scale(.99)}
+.category-icon{font-size:25px;width:38px;text-align:center}
+.category-info{flex:1;min-width:0}
+.category-info strong{font-size:13px;display:block}
+.category-info small{font-size:10px;color:var(--muted);display:block;margin-top:5px;line-height:1.7}
+.category-arrow{color:var(--gold);font-size:19px}
+.level-label{display:inline-block;font-size:9px;color:#ffe7a5;background:#594a29;padding:4px 7px;border-radius:20px;margin-top:6px}
+.topic-row{width:100%;display:flex;justify-content:space-between;align-items:center;gap:10px;text-align:right;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:13px;color:var(--text);margin:8px 0}
+.topic-row strong{font-size:13px}
+.topic-row small{display:block;color:var(--muted);font-size:10px;margin-top:5px}
+.topic-status{font-size:10px;color:var(--gold);white-space:nowrap}
+.lesson-head{background:linear-gradient(130deg,#263c5b,#1b293e);border:1px solid #465a76;border-radius:15px;padding:16px;margin-bottom:13px}
+.lesson-head h2{margin:7px 0}
+.lesson-head p{font-size:12px;color:#cbd5e1;line-height:1.8}
+.lesson-section{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:15px;margin:11px 0}
+.lesson-section h3{color:var(--gold);margin-top:0}
+.lesson-section p,.lesson-section li{font-size:12px;line-height:2;color:#d5deeb}
+.formula{background:#111b2a;border:1px solid #34445c;border-radius:10px;padding:12px;direction:ltr;text-align:left;color:#b8d4ff;font-size:13px;line-height:1.9;margin:10px 0}
+.lesson-example{background:#111b2a;border-radius:10px;padding:12px;margin:9px 0;line-height:1.8}
+.lesson-example .english{direction:ltr;text-align:left;font-size:13px;color:#e5edfa}
+.lesson-example .persian{font-size:11px;color:var(--muted);margin-top:6px}
+.lesson-note{border-right:3px solid var(--gold);background:#283247;padding:12px;border-radius:8px;font-size:12px;line-height:1.9;margin:10px 0}
+.lesson-complete{width:100%;padding:14px;margin-top:13px}
+.lesson-complete.done{background:#14532d}
+.quiz-question{padding:13px;background:#111b2a;border-radius:10px;margin:10px 0}
+.quiz-question p{font-size:13px;line-height:1.8}
+.quiz-result{font-size:13px;color:var(--gold);margin-top:10px}
 footer{text-align:center;color:#64748b;font-size:10px;padding:25px 12px}
-[dir="ltr"] .tile,[dir="ltr"] .back,[dir="ltr"] .option{text-align:left}
+[dir="ltr"] .tile,[dir="ltr"] .back,[dir="ltr"] .option,[dir="ltr"] .grammar-category,[dir="ltr"] .topic-row{text-align:left}
 @media(min-width:600px){
-  .grid{grid-template-columns:repeat(3,minmax(0,1fr))}
-  .tile{min-height:130px}
-  .container{padding-top:25px}
-  .sound-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+.grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+.tile{min-height:130px}
+.container{padding-top:25px}
+.sound-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+.grammar-list{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.grammar-category{margin:0}
 }
 </style>
 </head>
 
 <body>
 <header>
-  <div class="topline">
-    <div>
-      <div class="logo">📘 Farhad's English Lab</div>
-      <div class="sub" data-i18n="tagline">فضای شخصی یادگیری زبان انگلیسی</div>
-    </div>
-    <button class="lang-btn" id="languageToggle">English</button>
-  </div>
+<div class="topline">
+<div>
+<div class="logo">📘 Farhad's English Lab</div>
+<div class="sub" data-i18n="tagline">فضای شخصی یادگیری زبان انگلیسی</div>
+</div>
+<button class="lang-btn" id="languageToggle">English</button>
+</div>
 </header>
 
 <main class="container">
 
 <section id="homeView" class="view active">
-  <div class="welcome">
-    <h1 data-i18n="welcome">به آزمایشگاه زبان انگلیسی خوش اومدی!</h1>
-    <p data-i18n="welcomeSub">هر روز کمی تمرین کن و قدم‌به‌قدم پیشرفت کن.</p>
-  </div>
-  <div class="daily">
-    <div class="eyebrow" data-i18n="dailyLabel">واژه امروز</div>
-    <div class="daily-word">Curious</div>
-    <div class="daily-meaning" data-i18n="dailyMeaning">کنجکاو</div>
-    <div class="daily-example">She is curious about the world.</div>
-  </div>
-  <h2 class="section-title" data-i18n="sectionsTitle">بخش‌های آموزشی</h2>
-  <div class="grid">
-    <button class="tile" onclick="openView('dictionaryView')"><span class="tile-icon">📖</span><span class="tile-title" data-i18n="dictionary">دیکشنری</span><span class="tile-desc" data-i18n="dictionaryDesc">معنی، تلفظ و مثال واژه‌ها</span></button>
-    <button class="tile" onclick="openView('grammarView')"><span class="tile-icon">🎓</span><span class="tile-title" data-i18n="grammar">آکادمی گرامر</span><span class="tile-desc" data-i18n="grammarDesc">از پایه تا سطح پیشرفته</span></button>
-    <button class="tile" onclick="openView('pronunciationView')"><span class="tile-icon">🗣️</span><span class="tile-title" data-i18n="pronunciation">تلفظ و آواشناسی</span><span class="tile-desc" data-i18n="pronunciationDesc">صداها، IPA و تمرین تلفظ</span></button>
-    <button class="tile" onclick="openView('quizView')"><span class="tile-icon">🧠</span><span class="tile-title" data-i18n="tests">آزمون‌ها</span><span class="tile-desc" data-i18n="testsDesc">تمرین و سنجش آموخته‌ها</span></button>
-    <button class="tile" onclick="openView('listeningView')"><span class="tile-icon">🎧</span><span class="tile-title" data-i18n="listening">شنیداری</span><span class="tile-desc" data-i18n="listeningDesc">فایل صوتی و درک شنیداری</span></button>
-    <button class="tile" onclick="openView('speakingView')"><span class="tile-icon">💬</span><span class="tile-title" data-i18n="speaking">مکالمه</span><span class="tile-desc" data-i18n="speakingDesc">گفت‌وگو و جمله‌سازی</span></button>
-    <button class="tile" onclick="openView('readingView')"><span class="tile-icon">📚</span><span class="tile-title" data-i18n="reading">خواندن</span><span class="tile-desc" data-i18n="readingDesc">متن‌ها و داستان‌های سطح‌بندی‌شده</span></button>
-    <button class="tile" onclick="openView('writingView')"><span class="tile-icon">✍️</span><span class="tile-title" data-i18n="writing">نوشتن</span><span class="tile-desc" data-i18n="writingDesc">تمرین نوشتار انگلیسی</span></button>
-    <button class="tile" onclick="openView('topicsView')"><span class="tile-icon">🗂️</span><span class="tile-title" data-i18n="topics">واژگان موضوعی</span><span class="tile-desc" data-i18n="topicsDesc">لغات دسته‌بندی‌شده</span></button>
-    <button class="tile" onclick="openView('favoritesView')"><span class="tile-icon">⭐</span><span class="tile-title" data-i18n="favorites">علاقه‌مندی‌ها</span><span class="tile-desc" data-i18n="favoritesDesc">واژه‌های ذخیره‌شده</span></button>
-    <button class="tile" onclick="openView('learnedView')"><span class="tile-icon">✅</span><span class="tile-title" data-i18n="learnedPage">کلمات یادگرفته‌شده</span><span class="tile-desc" data-i18n="learnedDesc">فهرست واژه‌هایی که یاد گرفته‌ای</span></button>
-    <button class="tile" onclick="openView('revisionView')"><span class="tile-icon">🔁</span><span class="tile-title" data-i18n="revision">مرور هوشمند</span><span class="tile-desc" data-i18n="revisionDesc">مرور و تثبیت آموخته‌ها</span></button>
-    <button class="tile" onclick="openView('progressView')"><span class="tile-icon">📊</span><span class="tile-title" data-i18n="progress">پیشرفت من</span><span class="tile-desc" data-i18n="progressDesc">گزارش مسیر یادگیری</span></button>
-  </div>
-  <div class="progress-card">
-    <div class="progress-head"><strong data-i18n="progressTitle">پیشرفت واژگان</strong><span class="progress-number" id="wordCount">۰ / ۴۰۰۰</span></div>
-    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
-    <div class="small" data-i18n="progressNote">با یادگیری واژه‌های جدید، پیشرفتت اینجا نمایش داده می‌شه.</div>
-  </div>
+<div class="welcome">
+<h1 data-i18n="welcome">به آزمایشگاه زبان انگلیسی خوش اومدی!</h1>
+<p data-i18n="welcomeSub">هر روز کمی تمرین کن و قدم‌به‌قدم پیشرفت کن.</p>
+</div>
+<div class="daily">
+<div class="eyebrow" data-i18n="dailyLabel">واژه امروز</div>
+<div class="daily-word">Curious</div>
+<div class="daily-meaning" data-i18n="dailyMeaning">کنجکاو</div>
+<div class="daily-example">She is curious about the world.</div>
+</div>
+<h2 class="section-title" data-i18n="sectionsTitle">بخش‌های آموزشی</h2>
+<div class="grid">
+<button class="tile" onclick="openView('dictionaryView')"><span class="tile-icon">📖</span><span class="tile-title" data-i18n="dictionary">دیکشنری</span><span class="tile-desc" data-i18n="dictionaryDesc">معنی، تلفظ و مثال واژه‌ها</span></button>
+<button class="tile" onclick="openView('grammarView')"><span class="tile-icon">🎓</span><span class="tile-title" data-i18n="grammar">آکادمی گرامر</span><span class="tile-desc" data-i18n="grammarDesc">از پایه تا سطح پیشرفته</span></button>
+<button class="tile" onclick="openView('pronunciationView')"><span class="tile-icon">🗣️</span><span class="tile-title" data-i18n="pronunciation">تلفظ و آواشناسی</span><span class="tile-desc" data-i18n="pronunciationDesc">صداها، IPA و تمرین تلفظ</span></button>
+<button class="tile" onclick="openView('quizView')"><span class="tile-icon">🧠</span><span class="tile-title" data-i18n="tests">آزمون‌ها</span><span class="tile-desc" data-i18n="testsDesc">تمرین و سنجش آموخته‌ها</span></button>
+<button class="tile" onclick="openView('listeningView')"><span class="tile-icon">🎧</span><span class="tile-title" data-i18n="listening">شنیداری</span><span class="tile-desc" data-i18n="listeningDesc">فایل صوتی و درک شنیداری</span></button>
+<button class="tile" onclick="openView('speakingView')"><span class="tile-icon">💬</span><span class="tile-title" data-i18n="speaking">مکالمه</span><span class="tile-desc" data-i18n="speakingDesc">گفت‌وگو و جمله‌سازی</span></button>
+<button class="tile" onclick="openView('readingView')"><span class="tile-icon">📚</span><span class="tile-title" data-i18n="reading">خواندن</span><span class="tile-desc" data-i18n="readingDesc">متن‌ها و داستان‌های سطح‌بندی‌شده</span></button>
+<button class="tile" onclick="openView('writingView')"><span class="tile-icon">✍️</span><span class="tile-title" data-i18n="writing">نوشتن</span><span class="tile-desc" data-i18n="writingDesc">تمرین نوشتار انگلیسی</span></button>
+<button class="tile" onclick="openView('topicsView')"><span class="tile-icon">🗂️</span><span class="tile-title" data-i18n="topics">واژگان موضوعی</span><span class="tile-desc" data-i18n="topicsDesc">لغات دسته‌بندی‌شده</span></button>
+<button class="tile" onclick="openView('favoritesView')"><span class="tile-icon">⭐</span><span class="tile-title" data-i18n="favorites">علاقه‌مندی‌ها</span><span class="tile-desc" data-i18n="favoritesDesc">واژه‌های ذخیره‌شده</span></button>
+<button class="tile" onclick="openView('learnedView')"><span class="tile-icon">✅</span><span class="tile-title" data-i18n="learnedPage">کلمات یادگرفته‌شده</span><span class="tile-desc" data-i18n="learnedDesc">فهرست واژه‌هایی که یاد گرفته‌ای</span></button>
+<button class="tile" onclick="openView('revisionView')"><span class="tile-icon">🔁</span><span class="tile-title" data-i18n="revision">مرور هوشمند</span><span class="tile-desc" data-i18n="revisionDesc">مرور و تثبیت آموخته‌ها</span></button>
+<button class="tile" onclick="openView('progressView')"><span class="tile-icon">📊</span><span class="tile-title" data-i18n="progress">پیشرفت من</span><span class="tile-desc" data-i18n="progressDesc">گزارش مسیر یادگیری</span></button>
+</div>
+<div class="progress-card">
+<div class="progress-head"><strong data-i18n="progressTitle">پیشرفت واژگان</strong><span class="progress-number" id="wordCount">۰ / ۴۰۰۰</span></div>
+<div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+<div class="small" data-i18n="progressNote">با یادگیری واژه‌های جدید، پیشرفتت اینجا نمایش داده می‌شه.</div>
+</div>
 </section>
 
 <section id="dictionaryView" class="view">
-  <button class="back" onclick="goHome()" data-i18n="back">← بازگشت به خانه</button>
-  <h2 data-i18n="dictionary">دیکشنری</h2>
-  <input class="search" id="search" placeholder="کلمه انگلیسی یا معنی فارسی را بنویس...">
-  <div class="filters">
-    <select class="filter" id="levelFilter">
-      <option value="all" data-i18n="allLevels">همه سطح‌ها</option>
-      <option value="A1">A1 - Beginner</option><option value="A2">A2 - Elementary</option><option value="B1">B1 - Intermediate</option>
-    </select>
-    <select class="filter" id="categoryFilter">
-      <option value="all" data-i18n="allCategories">همه موضوعات</option>
-      <option value="daily" data-i18n="dailyCategory">روزمره</option><option value="people" data-i18n="peopleCategory">افراد و ویژگی‌ها</option><option value="learning" data-i18n="learningCategory">یادگیری</option><option value="life" data-i18n="lifeCategory">زندگی</option>
-    </select>
-  </div>
-  <div class="small" id="dictionaryCount"></div><div id="wordList"></div>
+<button class="back" onclick="goHome()" data-i18n="back">← بازگشت به خانه</button>
+<h2 data-i18n="dictionary">دیکشنری</h2>
+<input class="search" id="search" placeholder="کلمه انگلیسی یا معنی فارسی را بنویس...">
+<div class="filters">
+<select class="filter" id="levelFilter">
+<option value="all" data-i18n="allLevels">همه سطح‌ها</option>
+<option value="A1">A1 - Beginner</option><option value="A2">A2 - Elementary</option><option value="B1">B1 - Intermediate</option>
+</select>
+<select class="filter" id="categoryFilter">
+<option value="all" data-i18n="allCategories">همه موضوعات</option>
+<option value="daily" data-i18n="dailyCategory">روزمره</option><option value="people" data-i18n="peopleCategory">افراد و ویژگی‌ها</option><option value="learning" data-i18n="learningCategory">یادگیری</option><option value="life" data-i18n="lifeCategory">زندگی</option>
+</select>
+</div>
+<div class="small" id="dictionaryCount"></div><div id="wordList"></div>
 </section>
 
 <section id="learnedView" class="view">
-  <button class="back" onclick="goHome()" data-i18n="back">← بازگشت به خانه</button>
-  <h2 data-i18n="learnedPage">کلمات یادگرفته‌شده</h2>
-  <div class="card">
-    <div class="progress-head"><strong data-i18n="learnedTotal">تعداد کلمات یادگرفته‌شده</strong><span class="progress-number" id="learnedPageCount">0</span></div>
-    <div class="small" data-i18n="learnedPageNote">هر کلمه‌ای را که یاد گرفتی از دیکشنری به این فهرست اضافه کن.</div>
-  </div>
-  <div id="learnedList"></div>
+<button class="back" onclick="goHome()" data-i18n="back">← بازگشت به خانه</button>
+<h2 data-i18n="learnedPage">کلمات یادگرفته‌شده</h2>
+<div class="card">
+<div class="progress-head"><strong data-i18n="learnedTotal">تعداد کلمات یادگرفته‌شده</strong><span class="progress-number" id="learnedPageCount">0</span></div>
+<div class="small" data-i18n="learnedPageNote">هر کلمه‌ای را که یاد گرفتی از دیکشنری به این فهرست اضافه کن.</div>
+</div>
+<div id="learnedList"></div>
 </section>
 
 <section id="pronunciationView" class="view">
-  <button class="back" onclick="goHome()" data-i18n="back">← بازگشت به خانه</button>
-  <h2 data-i18n="pronunciation">آکادمی تلفظ انگلیسی</h2>
-  <p class="small" data-i18n="pronIntro">در این بخش با حروف، صداها و نمادهای آوانگاری انگلیسی آشنا می‌شوی.</p>
-  <div class="tabs" id="pronTabs">
-    <button class="tab-btn active" data-tab="alphabet" data-i18n="alphabet">الفبا</button>
-    <button class="tab-btn" data-tab="vowels" data-i18n="vowels">مصوت‌ها</button>
-    <button class="tab-btn" data-tab="consonants" data-i18n="consonants">صامت‌ها</button>
-    <button class="tab-btn" data-tab="pairs" data-i18n="minimalPairs">صداهای مشابه</button>
-    <button class="tab-btn" data-tab="practice" data-i18n="soundPractice">تمرین</button>
-  </div>
-  <div id="pronunciationContent"></div>
+<button class="back" onclick="goHome()" data-i18n="back">← بازگشت به خانه</button>
+<h2 data-i18n="pronunciation">آکادمی تلفظ انگلیسی</h2>
+<p class="small" data-i18n="pronIntro">در این بخش با حروف، صداها و نمادهای آوانگاری انگلیسی آشنا می‌شوی.</p>
+<div class="tabs" id="pronTabs">
+<button class="tab-btn active" data-tab="alphabet" data-i18n="alphabet">الفبا</button>
+<button class="tab-btn" data-tab="vowels" data-i18n="vowels">مصوت‌ها</button>
+<button class="tab-btn" data-tab="consonants" data-i18n="consonants">صامت‌ها</button>
+<button class="tab-btn" data-tab="pairs" data-i18n="minimalPairs">صداهای مشابه</button>
+<button class="tab-btn" data-tab="practice" data-i18n="soundPractice">تمرین</button>
+</div>
+<div id="pronunciationContent"></div>
 </section>
 
 <section id="quizView" class="view">
-  <button class="back" onclick="goHome()" data-i18n="back">← بازگشت به خانه</button>
-  <h2 data-i18n="quizTitle">آزمون واژگان</h2>
-  <div class="card">
-    <div class="small" data-i18n="quizInstruction">معنی کلمه زیر را انتخاب کن:</div>
-    <div class="question" id="question"></div><div id="options"></div>
-    <div id="feedback" class="feedback"></div>
-    <button class="primary" id="nextQuestionButton" data-i18n="nextQuestion">سؤال بعدی ←</button>
-  </div>
+<button class="back" onclick="goHome()" data-i18n="back">← بازگشت به خانه</button>
+<h2 data-i18n="quizTitle">آزمون واژگان</h2>
+<div class="card">
+<div class="small" data-i18n="quizInstruction">معنی کلمه زیر را انتخاب کن:</div>
+<div class="question" id="question"></div><div id="options"></div>
+<div id="feedback" class="feedback"></div>
+<button class="primary" id="nextQuestionButton" data-i18n="nextQuestion">سؤال بعدی ←</button>
+</div>
 </section>
 
 <section id="favoritesView" class="view">
-  <button class="back" onclick="goHome()" data-i18n="back">← بازگشت به خانه</button>
-  <h2 data-i18n="favoritesTitle">لغت‌های موردعلاقه ⭐</h2><div id="favoriteList"></div>
+<button class="back" onclick="goHome()" data-i18n="back">← بازگشت به خانه</button>
+<h2 data-i18n="favoritesTitle">لغت‌های موردعلاقه ⭐</h2><div id="favoriteList"></div>
 </section>
 
-<section id="grammarView" class="view"><button class="back" onclick="goHome()" data-i18n="back">← بازگشت به خانه</button><div class="coming"><div class="big">🎓</div><h2 data-i18n="grammar">آکادمی گرامر</h2><span data-i18n="coming">این بخش در مرحله بعدی توسعه ساخته می‌شه.</span></div></section>
+<!-- GRAMMAR ACADEMY -->
+<section id="grammarView" class="view">
+<button class="back" onclick="goHome()" data-i18n="back">← بازگشت به خانه</button>
+<div id="grammarHome">
+<div class="grammar-hero">
+<div class="hero-icon">🎓</div>
+<h2 data-fa="آکادمی جامع گرامر انگلیسی" data-en="English Grammar Academy">آکادمی جامع گرامر انگلیسی</h2>
+<p data-fa="از اولین مفاهیم گرامری تا ساختارهای پیشرفته، قدم‌به‌قدم یاد بگیر. هر بخش شامل درس‌ها، مثال‌ها و تمرین خواهد بود."
+data-en="Learn English grammar step by step, from the foundations to advanced structures. Explore lessons, examples and practice."></p>
+</div>
+<div class="grammar-stats">
+<div class="grammar-stat"><strong id="grammarCategoryCount">۱۲</strong><span data-fa="دسته آموزشی" data-en="Categories">دسته آموزشی</span></div>
+<div class="grammar-stat"><strong id="grammarLessonCount">۰</strong><span data-fa="درس تکمیل‌شده" data-en="Completed lessons">درس تکمیل‌شده</span></div>
+<div class="grammar-stat"><strong> A1–C2 </strong><span data-fa="سطح آموزشی" data-en="Learning levels">سطح آموزشی</span></div>
+</div>
+<div class="progress-card">
+<div class="progress-head"><strong data-fa="پیشرفت آکادمی گرامر" data-en="Grammar progress">پیشرفت آکادمی گرامر</strong><span class="progress-number" id="grammarPercent">۰٪</span></div>
+<div class="progress-track"><div class="progress-fill" id="grammarProgressBar"></div></div>
+<div class="small" data-fa="با تکمیل درس‌ها، مسیر پیشرفتت اینجا ثبت می‌شود." data-en="Your completed lessons will be tracked here."></div>
+</div>
+<input class="search grammar-search" id="grammarSearch" placeholder="جست‌وجو در دسته‌ها و موضوعات..." oninput="renderGrammarHome()">
+<div id="grammarCategoryList" class="grammar-list"></div>
+</div>
+
+<div id="grammarCategoryPage" style="display:none">
+<button class="back" onclick="grammarBack()" data-fa="← بازگشت به دسته‌بندی‌ها" data-en="← Back to categories">← بازگشت به دسته‌بندی‌ها</button>
+<h2 id="grammarCategoryTitle"></h2>
+<p class="small" id="grammarCategoryDescription"></p>
+<div class="progress-card">
+<div class="progress-head"><strong data-fa="پیشرفت این بخش" data-en="Category progress">پیشرفت این بخش</strong><span class="progress-number" id="categoryProgressText">۰ / ۰</span></div>
+<div class="progress-track"><div class="progress-fill" id="categoryProgressBar"></div></div>
+</div>
+<div id="grammarTopicList"></div>
+</div>
+
+<div id="grammarLessonPage" style="display:none">
+<button class="back" onclick="grammarBack()" data-fa="← بازگشت به فهرست درس‌ها" data-en="← Back to lessons">← بازگشت به فهرست درس‌ها</button>
+<div id="grammarLessonContent"></div>
+</div>
+</section>
+
 <section id="listeningView" class="view"><button class="back" onclick="goHome()" data-i18n="back">← بازگشت به خانه</button><div class="coming"><div class="big">🎧</div><h2 data-i18n="listening">شنیداری</h2><span data-i18n="coming">این بخش در مرحله بعدی توسعه ساخته می‌شه.</span></div></section>
 <section id="speakingView" class="view"><button class="back" onclick="goHome()" data-i18n="back">← بازگشت به خانه</button><div class="coming"><div class="big">💬</div><h2 data-i18n="speaking">مکالمه</h2><span data-i18n="coming">این بخش در مرحله بعدی توسعه ساخته می‌شه.</span></div></section>
 <section id="readingView" class="view"><button class="back" onclick="goHome()" data-i18n="back">← بازگشت به خانه</button><div class="coming"><div class="big">📚</div><h2 data-i18n="reading">خواندن</h2><span data-i18n="coming">این بخش در مرحله بعدی توسعه ساخته می‌شه.</span></div></section>
@@ -213,38 +294,42 @@ footer{text-align:center;color:#64748b;font-size:10px;padding:25px 12px}
 <section id="revisionView" class="view"><button class="back" onclick="goHome()" data-i18n="back">← بازگشت به خانه</button><div class="coming"><div class="big">🔁</div><h2 data-i18n="revision">مرور هوشمند</h2><span data-i18n="coming">این بخش در مرحله بعدی توسعه ساخته می‌شه.</span></div></section>
 
 <section id="progressView" class="view">
-  <button class="back" onclick="goHome()" data-i18n="back">← بازگشت به خانه</button>
-  <h2 data-i18n="progress">پیشرفت من</h2>
-  <div class="card">
-    <div class="small" data-i18n="statsTitle">آمار کلی آزمون‌های من</div>
-    <div class="progress-head" style="margin-top:18px"><strong data-i18n="scoreLabel">امتیاز کل</strong><span class="progress-number" id="statScore">0</span></div>
-    <div class="progress-head" style="margin-top:20px"><strong data-i18n="correctLabel">پاسخ‌های درست</strong><span id="statCorrect">0</span></div>
-    <div class="progress-head" style="margin-top:20px"><strong data-i18n="wrongLabel">پاسخ‌های غلط</strong><span id="statWrong">0</span></div>
-    <div class="progress-head" style="margin-top:20px"><strong data-i18n="accuracyLabel">درصد موفقیت</strong><span class="progress-number" id="statAccuracy">0%</span></div>
-  </div>
-  <div class="card">
-    <div class="progress-head"><strong data-i18n="learnedTitle">واژه‌های یادگرفته‌شده</strong><span class="progress-number" id="learnedCount">0</span></div>
-    <div class="progress-track"><div class="progress-fill" id="progressFill2"></div></div>
-    <div class="small" data-i18n="learnedNote">واژه‌هایی که یاد گرفته‌ای در این قسمت ثبت می‌شوند.</div>
-    <button class="action-btn" style="margin-top:12px" onclick="openView('learnedView')" data-i18n="seeLearned">دیدن کلمات یادگرفته‌شده</button>
-  </div>
-  <div class="small" data-i18n="statsNote">آمار آزمون‌ها به‌صورت خودکار ذخیره می‌شود.</div>
+<button class="back" onclick="goHome()" data-i18n="back">← بازگشت به خانه</button>
+<h2 data-i18n="progress">پیشرفت من</h2>
+<div class="card">
+<div class="small" data-i18n="statsTitle">آمار کلی آزمون‌های من</div>
+<div class="progress-head" style="margin-top:18px"><strong data-i18n="scoreLabel">امتیاز کل</strong><span class="progress-number" id="statScore">0</span></div>
+<div class="progress-head" style="margin-top:20px"><strong data-i18n="correctLabel">پاسخ‌های درست</strong><span id="statCorrect">0</span></div>
+<div class="progress-head" style="margin-top:20px"><strong data-i18n="wrongLabel">پاسخ‌های غلط</strong><span id="statWrong">0</span></div>
+<div class="progress-head" style="margin-top:20px"><strong data-i18n="accuracyLabel">درصد موفقیت</strong><span class="progress-number" id="statAccuracy">0%</span></div>
+</div>
+<div class="card">
+<div class="progress-head"><strong data-i18n="learnedTitle">واژه‌های یادگرفته‌شده</strong><span class="progress-number" id="learnedCount">0</span></div>
+<div class="progress-track"><div class="progress-fill" id="progressFill2"></div></div>
+<div class="small" data-i18n="learnedNote">واژه‌هایی که یاد گرفته‌ای در این قسمت ثبت می‌شوند.</div>
+<button class="action-btn" style="margin-top:12px" onclick="openView('learnedView')" data-i18n="seeLearned">دیدن کلمات یادگرفته‌شده</button>
+</div>
+<div class="card">
+<div class="progress-head"><strong data-fa="درس‌های گرامر تکمیل‌شده" data-en="Completed grammar lessons">درس‌های گرامر تکمیل‌شده</strong><span class="progress-number" id="grammarProgressCount">0</span></div>
+<button class="action-btn" style="margin-top:12px" onclick="openView('grammarView')" data-fa="رفتن به آکادمی گرامر" data-en="Open Grammar Academy">رفتن به آکادمی گرامر</button>
+</div>
+<div class="small" data-i18n="statsNote">آمار آزمون‌ها به‌صورت خودکار ذخیره می‌شود.</div>
 </section>
-</main>
 
+</main>
 <footer>Farhad's English Lab · Learn something new every day</footer>
 
 <script>
 "use strict";
 
-/* DATABASE */
+/* WORD DATABASE */
 const words=[
 {w:"Ability",p:"/əˈbɪləti/",m:"توانایی",d:"The skill or power to do something.",e:"She has the ability to learn quickly.",et:"او توانایی یادگیری سریع را دارد.",l:"A2",c:"learning"},
 {w:"Achieve",p:"/əˈtʃiːv/",m:"به دست آوردن، موفق شدن",d:"To succeed in doing something.",e:"You can achieve your goals.",et:"تو می‌توانی به هدف‌هایت برسی.",l:"B1",c:"learning"},
 {w:"Always",p:"/ˈɔːlweɪz/",m:"همیشه",d:"At all times; every time.",e:"I always drink coffee in the morning.",et:"من همیشه صبح‌ها قهوه می‌نوشم.",l:"A1",c:"daily"},
 {w:"Beautiful",p:"/ˈbjuːtɪfəl/",m:"زیبا",d:"Very nice to look at.",e:"This is a beautiful place.",et:"این مکان زیبایی است.",l:"A1",c:"people"},
 {w:"Believe",p:"/bɪˈliːv/",m:"باور داشتن",d:"To think that something is true.",e:"I believe in you.",et:"من به تو باور دارم.",l:"A2",c:"life"},
-{w:"Brave",p:"/breɪv/",m:"شجاع",d:"Ready to face danger or difficulty.",e:"The brave man helped the child.",et:"آن مرد شجاع به کودک کمک کرد.",l:"A2",c:"people"},
+{w:"Brave",p:"/breɪv/",m:"شجاع",d:"Ready to face difficulty.",e:"The brave man helped the child.",et:"آن مرد شجاع به کودک کمک کرد.",l:"A2",c:"people"},
 {w:"Careful",p:"/ˈkerfəl/",m:"مراقب، بااحتیاط",d:"Giving attention to avoid mistakes.",e:"Be careful when you cross the street.",et:"هنگام عبور از خیابان مراقب باش.",l:"A2",c:"daily"},
 {w:"Change",p:"/tʃeɪndʒ/",m:"تغییر دادن، تغییر",d:"To make or become different.",e:"People can change.",et:"آدم‌ها می‌توانند تغییر کنند.",l:"A1",c:"life"},
 {w:"Choose",p:"/tʃuːz/",m:"انتخاب کردن",d:"To decide which thing you want.",e:"You can choose your favorite book.",et:"می‌توانی کتاب موردعلاقه‌ات را انتخاب کنی.",l:"A1",c:"daily"},
@@ -287,7 +372,7 @@ seeLearned:"دیدن کلمات یادگرفته‌شده",pronIntro:"در ای�
 alphabet:"الفبا",vowels:"مصوت‌ها",consonants:"صامت‌ها",minimalPairs:"صداهای مشابه",soundPractice:"تمرین",
 play:"🔊 پخش کلمه نمونه",letterHint:"نام حرف",pairHint:"به تفاوت تلفظ دو کلمه گوش کن.",
 practiceTitle:"تمرین شنیداری",practiceInstruction:"کلمه‌ای را که می‌شنوی انتخاب کن.",playQuestion:"🔊 پخش کلمه",correctAnswer:"آفرین! درست انتخاب کردی.",wrongAnswer:"این بار درست نبود. پاسخ درست: ",
-nextPractice:"سؤال بعدی",noVoice:"قابلیت پخش صدا در این مرورگر فعال نیست.",soundNote:"نمادهای IPA خوانده نمی‌شوند؛ دکمه صدا کلمه نمونه را پخش می‌کند. نوع لهجه به صدای نصب‌شده روی گوشی بستگی دارد."
+nextPractice:"سؤال بعدی",noVoice:"قابلیت پخش صدا در این مرورگر فعال نیست.",soundNote:"نمادهای IPA خوانده نمی‌شوند؛ دکمه صدا کلمه نمونه را پخش می‌کند."
 },
 en:{
 tagline:"Your personal English learning space",welcome:"Welcome to Farhad's English Lab!",welcomeSub:"Practice a little every day and improve step by step.",
@@ -314,18 +399,15 @@ alphabet:"Alphabet",vowels:"Vowels",consonants:"Consonants",minimalPairs:"Simila
 play:"🔊 Play example word",letterHint:"Letter name",pairHint:"Listen to the difference between the two words.",
 practiceTitle:"Listening Practice",practiceInstruction:"Choose the word you hear.",playQuestion:"🔊 Play word",
 correctAnswer:"Well done! That's correct.",wrongAnswer:"Not this time. Correct answer: ",nextPractice:"Next question",
-noVoice:"Speech is not available in this browser.",soundNote:"IPA symbols are not spoken; the audio button plays the example word. Accent depends on your device's installed voice."
+noVoice:"Speech is not available in this browser.",soundNote:"IPA symbols are not spoken; the audio button plays the example word."
 }
 };
 
 /* STORAGE */
 function readStorage(key,fallback){
-  try{const v=localStorage.getItem(key);return v===null?fallback:JSON.parse(v)}
-  catch(e){return fallback}
+try{const v=localStorage.getItem(key);return v===null?fallback:JSON.parse(v)}catch(e){return fallback}
 }
-function writeStorage(key,value){
-  try{localStorage.setItem(key,JSON.stringify(value))}catch(e){console.warn(e)}
-}
+function writeStorage(key,value){try{localStorage.setItem(key,JSON.stringify(value))}catch(e){console.warn(e)}}
 let currentLang=localStorage.getItem("farhadLanguage")||"fa";
 if(!translations[currentLang])currentLang="fa";
 let favorites=readStorage("farhadFavorites",[]);
@@ -333,9 +415,7 @@ let learnedWords=readStorage("farhadLearnedWords",[]);
 if(!Array.isArray(favorites))favorites=[];
 if(!Array.isArray(learnedWords))learnedWords=[];
 let quizStats=readStorage("farhadQuizStats",{correct:0,wrong:0,score:0});
-if(!quizStats||!Number.isFinite(quizStats.correct)||!Number.isFinite(quizStats.wrong)||!Number.isFinite(quizStats.score)){
-  quizStats={correct:0,wrong:0,score:0};
-}
+if(!quizStats||!Number.isFinite(quizStats.correct)||!Number.isFinite(quizStats.wrong)||!Number.isFinite(quizStats.score))quizStats={correct:0,wrong:0,score:0};
 let current=null,answered=false,currentChoices=[];
 
 function t(key){return translations[currentLang][key]||key}
@@ -345,365 +425,599 @@ function saveQuizStats(){writeStorage("farhadQuizStats",quizStats)}
 
 /* LANGUAGE */
 function applyLanguage(){
-  document.documentElement.lang=currentLang;
-  document.documentElement.dir=currentLang==="fa"?"rtl":"ltr";
-  document.querySelectorAll("[data-i18n]").forEach(el=>{
-    const key=el.getAttribute("data-i18n");
-    if(translations[currentLang][key])el.textContent=translations[currentLang][key];
-  });
-  document.getElementById("languageToggle").textContent=currentLang==="fa"?"English":"فارسی";
-  document.getElementById("search").placeholder=t("searchPlaceholder");
-  searchWords();renderFavorites();renderLearned();updateProgress();updateQuizStats();
-  renderPronunciation();
+document.documentElement.lang=currentLang;
+document.documentElement.dir=currentLang==="fa"?"rtl":"ltr";
+document.querySelectorAll("[data-i18n]").forEach(el=>{
+const key=el.getAttribute("data-i18n");
+if(translations[currentLang][key])el.textContent=translations[currentLang][key];
+});
+document.querySelectorAll("[data-fa][data-en]").forEach(el=>{
+el.textContent=currentLang==="fa"?el.dataset.fa:el.dataset.en;
+});
+document.getElementById("languageToggle").textContent=currentLang==="fa"?"English":"فارسی";
+document.getElementById("search").placeholder=t("searchPlaceholder");
+searchWords();renderFavorites();renderLearned();updateProgress();updateQuizStats();renderPronunciation();
+if(document.getElementById("grammarView").classList.contains("active")){
+if(grammarPage==="home")renderGrammarHome();
+if(grammarPage==="category"&&activeGrammarCategory)openGrammarCategory(activeGrammarCategory,true);
+if(grammarPage==="lesson"&&activeGrammarCategory&&activeGrammarLesson)openGrammarLesson(activeGrammarCategory,activeGrammarLesson,true);
+}
 }
 document.getElementById("languageToggle").addEventListener("click",()=>{
-  currentLang=currentLang==="fa"?"en":"fa";
-  try{localStorage.setItem("farhadLanguage",currentLang)}catch(e){}
-  applyLanguage();
+currentLang=currentLang==="fa"?"en":"fa";
+try{localStorage.setItem("farhadLanguage",currentLang)}catch(e){}
+applyLanguage();
 });
 
 /* NAVIGATION */
 function openView(id){
-  document.querySelectorAll(".view").forEach(v=>v.classList.remove("active"));
-  const target=document.getElementById(id);if(!target)return;
-  target.classList.add("active");
-  if(id==="favoritesView")renderFavorites();
-  if(id==="learnedView")renderLearned();
-  if(id==="quizView")nextQuestion();
-  if(id==="dictionaryView")searchWords();
-  if(id==="pronunciationView")renderPronunciation();
-  if(id==="progressView"){updateQuizStats();updateProgress()}
-  window.scrollTo(0,0);
+document.querySelectorAll(".view").forEach(v=>v.classList.remove("active"));
+const target=document.getElementById(id);if(!target)return;
+target.classList.add("active");
+if(id==="favoritesView")renderFavorites();
+if(id==="learnedView")renderLearned();
+if(id==="quizView")nextQuestion();
+if(id==="dictionaryView")searchWords();
+if(id==="pronunciationView")renderPronunciation();
+if(id==="progressView"){updateQuizStats();updateProgress();updateGrammarStats()}
+if(id==="grammarView"){grammarPage="home";renderGrammarHome()}
+window.scrollTo(0,0);
 }
 function goHome(){openView("homeView")}
 
 /* SPEECH */
 function speakWord(word){
-  if(!("speechSynthesis" in window)){alert(t("speechUnavailable"));return}
-  if(typeof word!=="string"||!word.trim())return;
-  window.speechSynthesis.cancel();
-  const utterance=new SpeechSynthesisUtterance(word);
-  utterance.lang="en-US";
-  utterance.rate=0.85;
-  const voices=window.speechSynthesis.getVoices();
-  const american=voices.find(v=>v.lang&&v.lang.toLowerCase()==="en-us");
-  if(american)utterance.voice=american;
-  window.speechSynthesis.speak(utterance);
+if(!("speechSynthesis" in window)){alert(t("speechUnavailable"));return}
+if(typeof word!=="string"||!word.trim())return;
+window.speechSynthesis.cancel();
+const utterance=new SpeechSynthesisUtterance(word);
+utterance.lang="en-US";utterance.rate=0.85;
+const voices=window.speechSynthesis.getVoices();
+const american=voices.find(v=>v.lang&&v.lang.toLowerCase()==="en-us");
+if(american)utterance.voice=american;
+window.speechSynthesis.speak(utterance);
 }
 
 /* DICTIONARY */
 function makeCard(word){
-  const saved=favorites.includes(word.w);
-  const learned=learnedWords.includes(word.w);
-  return `<div class="card">
-    <div class="word">${word.w}</div>
-    <div class="ipa">${word.p} · ${word.l}</div>
-    <div class="meaning">${word.m}</div>
-    <div class="definition"><strong>${t("definition")}:</strong> <span dir="ltr">${word.d}</span></div>
-    <div class="example"><strong>${t("exampleLabel")}:</strong><br>${word.e}</div>
-    <div class="example-translation">${word.et}</div>
-    <div class="word-meta"><span class="tag">${word.l}</span>${learned?`<span class="tag learned">${t("learned")}</span>`:""}</div>
-    <div class="actions">
-      <button class="action-btn" onclick="speakWord('${word.w}')">${t("listen")}</button>
-      <button class="action-btn" onclick="toggleFavorite('${word.w}')">${saved?t("saved"):t("save")}</button>
-      <button class="action-btn ${learned?"learned-btn":""}" onclick="toggleLearned('${word.w}')">${learned?t("learned"):t("notLearned")}</button>
-    </div>
-  </div>`;
+const saved=favorites.includes(word.w),learned=learnedWords.includes(word.w);
+return `<div class="card">
+<div class="word">${word.w}</div><div class="ipa">${word.p} · ${word.l}</div>
+<div class="meaning">${word.m}</div>
+<div class="definition"><strong>${t("definition")}:</strong> <span dir="ltr">${word.d}</span></div>
+<div class="example"><strong>${t("exampleLabel")}:</strong><br>${word.e}</div>
+<div class="example-translation">${word.et}</div>
+<div class="word-meta"><span class="tag">${word.l}</span>${learned?`<span class="tag learned">${t("learned")}</span>`:""}</div>
+<div class="actions">
+<button class="action-btn" onclick="speakWord('${word.w}')">${t("listen")}</button>
+<button class="action-btn" onclick="toggleFavorite('${word.w}')">${saved?t("saved"):t("save")}</button>
+<button class="action-btn ${learned?"learned-btn":""}" onclick="toggleLearned('${word.w}')">${learned?t("learned"):t("notLearned")}</button>
+</div></div>`;
 }
 function searchWords(){
-  const input=document.getElementById("search"),list=document.getElementById("wordList");
-  if(!input||!list)return;
-  const query=input.value.trim().toLowerCase();
-  const level=document.getElementById("levelFilter").value;
-  const category=document.getElementById("categoryFilter").value;
-  const found=words.filter(word=>
-    (word.w.toLowerCase().includes(query)||word.m.toLowerCase().includes(query)||word.d.toLowerCase().includes(query))&&
-    (level==="all"||word.l===level)&&(category==="all"||word.c===category)
-  );
-  document.getElementById("dictionaryCount").textContent=t("resultCount")+" "+found.length;
-  list.innerHTML=found.length?found.map(makeCard).join(""):`<p class="empty">${t("notFound")}</p>`;
+const input=document.getElementById("search"),list=document.getElementById("wordList");if(!input||!list)return;
+const query=input.value.trim().toLowerCase(),level=document.getElementById("levelFilter").value,category=document.getElementById("categoryFilter").value;
+const found=words.filter(word=>(word.w.toLowerCase().includes(query)||word.m.toLowerCase().includes(query)||word.d.toLowerCase().includes(query))&&(level==="all"||word.l===level)&&(category==="all"||word.c===category));
+document.getElementById("dictionaryCount").textContent=t("resultCount")+" "+found.length;
+list.innerHTML=found.length?found.map(makeCard).join(""):`<p class="empty">${t("notFound")}</p>`;
 }
 document.getElementById("search").addEventListener("input",searchWords);
 document.getElementById("levelFilter").addEventListener("change",searchWords);
 document.getElementById("categoryFilter").addEventListener("change",searchWords);
-
 function toggleFavorite(name){
-  favorites=favorites.includes(name)?favorites.filter(x=>x!==name):[...favorites,name];
-  saveFavorites();searchWords();renderFavorites();
+favorites=favorites.includes(name)?favorites.filter(x=>x!==name):[...favorites,name];
+saveFavorites();searchWords();renderFavorites();
 }
 function toggleLearned(name){
-  learnedWords=learnedWords.includes(name)?learnedWords.filter(x=>x!==name):[...learnedWords,name];
-  saveLearned();searchWords();renderLearned();updateProgress();updateQuizStats();
+learnedWords=learnedWords.includes(name)?learnedWords.filter(x=>x!==name):[...learnedWords,name];
+saveLearned();searchWords();renderLearned();updateProgress();updateQuizStats();
 }
 function renderFavorites(){
-  const box=document.getElementById("favoriteList");if(!box)return;
-  const list=words.filter(w=>favorites.includes(w.w));
-  box.innerHTML=list.length?list.map(makeCard).join(""):`<p class="empty">${t("emptyFavorites")}</p>`;
+const box=document.getElementById("favoriteList");if(!box)return;
+const list=words.filter(w=>favorites.includes(w.w));
+box.innerHTML=list.length?list.map(makeCard).join(""):`<p class="empty">${t("emptyFavorites")}</p>`;
 }
 function renderLearned(){
-  const box=document.getElementById("learnedList");if(!box)return;
-  const list=words.filter(w=>learnedWords.includes(w.w));
-  document.getElementById("learnedPageCount").textContent=list.length;
-  box.innerHTML=list.length?list.map(makeCard).join(""):`<p class="empty">${t("emptyLearned")}</p>`;
+const box=document.getElementById("learnedList");if(!box)return;
+const list=words.filter(w=>learnedWords.includes(w.w));
+document.getElementById("learnedPageCount").textContent=list.length;
+box.innerHTML=list.length?list.map(makeCard).join(""):`<p class="empty">${t("emptyLearned")}</p>`;
 }
 
-/* QUIZ */
+/* VOCABULARY QUIZ */
 function nextQuestion(){
-  answered=false;current=words[Math.floor(Math.random()*words.length)];
-  document.getElementById("question").textContent=current.w;
-  document.getElementById("feedback").textContent="";
-  currentChoices=[current.m];
-  while(currentChoices.length<4){
-    const random=words[Math.floor(Math.random()*words.length)];
-    if(!currentChoices.includes(random.m))currentChoices.push(random.m);
-  }
-  for(let i=currentChoices.length-1;i>0;i--){
-    const j=Math.floor(Math.random()*(i+1));
-    [currentChoices[i],currentChoices[j]]=[currentChoices[j],currentChoices[i]];
-  }
-  document.getElementById("options").innerHTML=currentChoices.map((choice,i)=>
-    `<button class="option" type="button" data-choice-index="${i}">${choice}</button>`
-  ).join("");
+answered=false;current=words[Math.floor(Math.random()*words.length)];
+document.getElementById("question").textContent=current.w;
+document.getElementById("feedback").textContent="";
+currentChoices=[current.m];
+while(currentChoices.length<4){const random=words[Math.floor(Math.random()*words.length)];if(!currentChoices.includes(random.m))currentChoices.push(random.m)}
+for(let i=currentChoices.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[currentChoices[i],currentChoices[j]]=[currentChoices[j],currentChoices[i]]}
+document.getElementById("options").innerHTML=currentChoices.map((choice,i)=>`<button class="option" type="button" data-choice-index="${i}">${choice}</button>`).join("");
 }
 document.getElementById("options").addEventListener("click",function(event){
-  const button=event.target.closest("button.option");
-  if(!button||!this.contains(button)||answered||!current)return;
-  const answer=currentChoices[Number(button.dataset.choiceIndex)];
-  if(typeof answer==="string")checkAnswer(button,answer);
+const button=event.target.closest("button.option");if(!button||!this.contains(button)||answered||!current)return;
+checkAnswer(button,currentChoices[Number(button.dataset.choiceIndex)]);
 });
 function checkAnswer(button,answer){
-  if(answered||!current)return;answered=true;
-  if(answer===current.m){quizStats.correct++;quizStats.score+=10}
-  else quizStats.wrong++;
-  saveQuizStats();updateQuizStats();
-  document.querySelectorAll("#options .option").forEach(option=>{
-    option.disabled=true;
-    if(currentChoices[Number(option.dataset.choiceIndex)]===current.m)option.classList.add("correct");
-  });
-  if(answer!==current.m)button.classList.add("wrong");
-  document.getElementById("feedback").textContent=answer===current.m?t("right"):t("wrong")+current.m;
+if(answered||!current)return;answered=true;
+if(answer===current.m){quizStats.correct++;quizStats.score+=10}else quizStats.wrong++;
+saveQuizStats();updateQuizStats();
+document.querySelectorAll("#options .option").forEach(option=>{
+option.disabled=true;if(currentChoices[Number(option.dataset.choiceIndex)]===current.m)option.classList.add("correct");
+});
+if(answer!==current.m)button.classList.add("wrong");
+document.getElementById("feedback").textContent=answer===current.m?t("right"):t("wrong")+current.m;
 }
 
 /* PROGRESS */
 function updateProgress(){
-  const count=learnedWords.length;
-  const percentage=Math.min((count/4000)*100,100);
-  document.getElementById("wordCount").textContent=currentLang==="fa"?count.toLocaleString("fa-IR")+" / ۴۰۰۰":count+" / 4000";
-  document.getElementById("progressFill").style.width=percentage+"%";
-  document.getElementById("learnedCount").textContent=count;
-  document.getElementById("progressFill2").style.width=percentage+"%";
+const count=learnedWords.length,percentage=Math.min(count/4000*100,100);
+document.getElementById("wordCount").textContent=currentLang==="fa"?count.toLocaleString("fa-IR")+" / ۴۰۰۰":count+" / 4000";
+document.getElementById("progressFill").style.width=percentage+"%";
+document.getElementById("learnedCount").textContent=count;
+document.getElementById("progressFill2").style.width=percentage+"%";
 }
 function updateQuizStats(){
-  const total=quizStats.correct+quizStats.wrong;
-  const accuracy=total?Math.round(quizStats.correct/total*100):0;
-  document.getElementById("statScore").textContent=quizStats.score;
-  document.getElementById("statCorrect").textContent=quizStats.correct;
-  document.getElementById("statWrong").textContent=quizStats.wrong;
-  document.getElementById("statAccuracy").textContent=accuracy+"%";
+const total=quizStats.correct+quizStats.wrong,accuracy=total?Math.round(quizStats.correct/total*100):0;
+document.getElementById("statScore").textContent=quizStats.score;
+document.getElementById("statCorrect").textContent=quizStats.correct;
+document.getElementById("statWrong").textContent=quizStats.wrong;
+document.getElementById("statAccuracy").textContent=accuracy+"%";
 }
 document.getElementById("nextQuestionButton").addEventListener("click",nextQuestion);
 
-/* PRONUNCIATION DATA */
-
-/* Alphabet: [letter, letter-name IPA] */
-const alphabet=[
-["A","/eɪ/"],["B","/biː/"],["C","/siː/"],["D","/diː/"],
-["E","/iː/"],["F","/ɛf/"],["G","/dʒiː/"],["H","/eɪtʃ/"],
-["I","/aɪ/"],["J","/dʒeɪ/"],["K","/keɪ/"],["L","/ɛl/"],
-["M","/ɛm/"],["N","/ɛn/"],["O","/oʊ/"],["P","/piː/"],
-["Q","/kjuː/"],["R","/ɑr/"],["S","/ɛs/"],["T","/tiː/"],
-["U","/juː/"],["V","/viː/"],["W","/ˈdʌbəl.juː/"],["X","/ɛks/"],
-["Y","/waɪ/"],["Z","/ziː/"]
+/* GRAMMAR DATABASE */
+const grammarCategories=[
+{id:"foundations",icon:"🧱",fa:"مبانی و اصطلاحات گرامری",en:"Grammar Foundations",level:"A1–A2",descFa:"آشنایی با اصول پایه، ترتیب کلمات و اجزای جمله",descEn:"Basic grammar concepts, word order and sentence elements",topics:[
+["terminology","اصطلاحات گرامری","Grammar terminology","A1"],
+["word-order","ترتیب کلمات در انگلیسی","English word order","A1"],
+["sentence-elements","اجزای جمله","Sentence elements","A1"]
+]},
+{id:"parts",icon:"🧩",fa:"اجزای کلام",en:"Parts of Speech",level:"A1–B2",descFa:"نقش کلمات در جمله و انواع آن‌ها",descEn:"The roles and types of words in a sentence",topics:[
+["noun","اسم","Noun","A1"],["verb","فعل","Verb","A1"],["adjective","صفت","Adjective","A1"],["adverb","قید","Adverb","A2"],["preposition","حرف اضافه","Preposition","A2"],["conjunction","حرف ربط","Conjunction","A2"],["interjection","شبه‌جمله","Interjection","B1"]
+]},
+{id:"nouns",icon:"📚",fa:"اسم‌ها و تعیین‌کننده‌ها",en:"Nouns & Determiners",level:"A1–B2",descFa:"اسم‌ها، حروف تعریف، کمیت‌سنج‌ها و مالکیت",descEn:"Nouns, articles, quantifiers and possession",topics:[
+["countable","اسم‌های قابل‌شمارش و غیرقابل‌شمارش","Countable & Uncountable Nouns","A1"],
+["articles","حروف تعریف a, an, the","Articles: A, An, The","A1"],
+["quantifiers","کمیت‌سنج‌ها","Quantifiers","A2"],
+["possessives","ساختارهای مالکیت","Possessives","A2"]
+]},
+{id:"pronouns",icon:"👤",fa:"ضمیرها و صفت‌ها",en:"Pronouns & Adjectives",level:"A1–C1",descFa:"انواع ضمیر، صفت‌ها و مقایسه",descEn:"Pronoun types, adjectives and comparison",topics:[
+["personal-pronouns","ضمیرهای شخصی","Personal Pronouns","A1"],
+["reflexive-pronouns","ضمیرهای انعکاسی","Reflexive Pronouns","A2"],
+["relative-pronouns","ضمیرهای موصولی","Relative Pronouns","B1"],
+["demonstratives","ضمیرها و صفات اشاره","Demonstratives","A1"],
+["comparatives","صفات تفضیلی","Comparative Adjectives","A2"],
+["superlatives","صفات عالی","Superlative Adjectives","A2"]
+]},
+{id:"verbs",icon:"⚙️",fa:"افعال و افعال کمکی",en:"Verbs & Auxiliary Verbs",level:"A1–C1",descFa:"ساختار فعل‌ها و انواع آن‌ها",descEn:"Verb forms, functions and classifications",topics:[
+["main-verbs","افعال اصلی","Main Verbs","A1"],
+["auxiliary-verbs","افعال کمکی","Auxiliary Verbs","A2"],
+["linking-verbs","افعال ربطی","Linking Verbs","B1"],
+["transitive-verbs","افعال متعدی و لازم","Transitive & Intransitive Verbs","B1"],
+["regular-irregular","افعال باقاعده و بی‌قاعده","Regular & Irregular Verbs","A2"]
+]},
+{id:"tenses",icon:"⏳",fa:"دوازده زمان انگلیسی",en:"English Tenses",level:"A1–C1",descFa:"۱۲ زمان اصلی، کاربردها، ساختارها و تفاوت‌ها",descEn:"The 12 main tenses, their forms, uses and differences",topics:[
+["present-simple","حال ساده","Present Simple","A1"],
+["present-continuous","حال استمراری","Present Continuous","A1"],
+["present-perfect","حال کامل","Present Perfect","B1"],
+["present-perfect-continuous","حال کامل استمراری","Present Perfect Continuous","B2"],
+["past-simple","گذشته ساده","Past Simple","A1"],
+["past-continuous","گذشته استمراری","Past Continuous","A2"],
+["past-perfect","گذشته کامل","Past Perfect","B1"],
+["past-perfect-continuous","گذشته کامل استمراری","Past Perfect Continuous","B2"],
+["future-simple","آینده ساده","Future Simple","A1"],
+["future-continuous","آینده استمراری","Future Continuous","B1"],
+["future-perfect","آینده کامل","Future Perfect","B2"],
+["future-perfect-continuous","آینده کامل استمراری","Future Perfect Continuous","C1"]
+]},
+{id:"sentences",icon:"🏗️",fa:"ساختار جمله، عبارت و بند",en:"Sentence Structure",level:"A1–C1",descFa:"ساختن جمله‌های ساده تا ساختارهای پیچیده",descEn:"Building sentences, phrases and clauses",topics:[
+["phrases","عبارت‌ها","Phrases","A2"],["clauses","بندها","Clauses","B1"],
+["simple-sentences","جمله ساده","Simple Sentences","A1"],
+["compound-sentences","جمله مرکب","Compound Sentences","B1"],
+["complex-sentences","جمله پیچیده","Complex Sentences","B1"],
+["compound-complex","جمله مرکب-پیچیده","Compound-Complex Sentences","C1"]
+]},
+{id:"questions",icon:"❓",fa:"سؤالات و منفی‌سازی",en:"Questions & Negation",level:"A1–B2",descFa:"انواع سؤال و روش‌های منفی کردن جمله",descEn:"Question forms and negative structures",topics:[
+["yes-no","سؤالات بله و خیر","Yes/No Questions","A1"],
+["wh-questions","سؤالات پرسشی Wh","Wh- Questions","A1"],
+["tag-questions","سؤالات تأییدی","Tag Questions","B1"],
+["indirect-questions","سؤالات غیرمستقیم","Indirect Questions","B2"],
+["negative-questions","سؤالات منفی","Negative Questions","B2"]
+]},
+{id:"modals",icon:"🔑",fa:"افعال وجهی و ساختارهای خاص",en:"Modal Verbs & Special Structures",level:"A2–C1",descFa:"توانایی، احتمال، اجبار، توصیه و ساختارهای ویژه",descEn:"Ability, possibility, obligation, advice and special forms",topics:[
+["can-could","Can و Could","Can & Could","A2"],
+["may-might","May و Might","May & Might","B1"],
+["must-have-to","Must و Have to","Must & Have to","A2"],
+["should","Should و Ought to","Should & Ought to","A2"],
+["would","Would و کاربردهای آن","Would and Its Uses","B1"],
+["modal-perfect","افعال وجهی کامل","Modal Perfect","C1"]
+]},
+{id:"conditionals",icon:"🔀",fa:"جملات شرطی و آرزویی",en:"Conditionals & Wishes",level:"B1–C1",descFa:"انواع شرطی، حالت‌های فرضی و آرزوها",descEn:"Conditional sentences, hypothetical situations and wishes",topics:[
+["zero-conditional","شرطی صفر","Zero Conditional","B1"],
+["first-conditional","شرطی نوع اول","First Conditional","B1"],
+["second-conditional","شرطی نوع دوم","Second Conditional","B1"],
+["third-conditional","شرطی نوع سوم","Third Conditional","B2"],
+["mixed-conditionals","شرطی‌های ترکیبی","Mixed Conditionals","C1"],
+["unless","ساختار Unless","Unless","B2"],
+["wish-if-only","Wish و If only","Wish & If only","B2"]
+]},
+{id:"voice",icon:"🔄",fa:"معلوم، مجهول و نقل‌قول",en:"Voice & Reported Speech",level:"B1–C1",descFa:"مجهول، ساختار سببی و نقل‌قول مستقیم و غیرمستقیم",descEn:"Passive voice, causatives and reported speech",topics:[
+["passive","جملات مجهول","Passive Voice","B1"],
+["causative","ساختار سببی","Causative Structures","B2"],
+["direct-indirect","نقل‌قول مستقیم و غیرمستقیم","Direct & Reported Speech","B1"]
+]},
+{id:"advanced",icon:"🚀",fa:"گرامر پیشرفته",en:"Advanced Grammar",level:"C1–C2",descFa:"ساختارهای پیچیده و نکات سطح بالای گرامر",descEn:"Complex structures and advanced grammar topics",topics:[
+["inversion","وارونگی در جمله","Inversion","C1"],
+["subjunctive","وجه التزامی","Subjunctive","C1"],
+["cleft-sentences","جملات شکافته","Cleft Sentences","C1"],
+["ellipsis","حذف در جمله","Ellipsis","C1"],
+["emphasis","تأکید در جمله","Emphasis","C1"],
+["reduced-clauses","بندهای کوتاه‌شده","Reduced Clauses","C2"]
+]}
 ];
 
-/* Vowels: [IPA symbol, example word, Persian explanation] */
-const vowelSounds=[
-["/i/","see","صدای ای؛ مانند see"],
-["/ɪ/","sit","ای کوتاه؛ مانند sit"],
-["/ɛ/","bed","صدای اِ؛ مانند bed"],
-["/æ/","cat","اَ باز؛ مانند cat"],
-["/ɑ/","father","آ؛ مانند father"],
-["/ɔ/","thought","آی گرد؛ مانند thought (در برخی لهجه‌های آمریکایی با /ɑ/ یکی می‌شود)"],
-["/ʊ/","book","او کوتاه؛ مانند book"],
-["/u/","blue","او کشیده؛ مانند blue"],
-["/ʌ/","cup","صدای کوتاه؛ مانند cup"],
-["/ɝ/","bird","صدای اِر آمریکایی؛ مانند bird"],
-["/ə/","about","شوا؛ صدای ضعیف و کوتاه در about"],
-["/eɪ/","day","ترکیب اِی؛ مانند day"],
-["/aɪ/","my","ترکیب آی؛ مانند my"],
-["/ɔɪ/","boy","ترکیب اُی؛ مانند boy"],
-["/aʊ/","now","ترکیب آو؛ مانند now"],
-["/oʊ/","go","ترکیب اُو؛ مانند go"],
-["/ɪr/","near","صدای نزدیک به ایر؛ مانند near"],
-["/ɛr/","hair","صدای اِر؛ مانند hair"],
-["/ʊr/","tour","صدای اور؛ مانند tour"],
-["/ɑr/","car","صدای آر آمریکایی؛ مانند car"]
-];
-
-/* Consonants: [IPA symbol, example word, Persian explanation] */
-const consonantSounds=[
-["/p/","pen","پ؛ بدون لرزش تارهای صوتی"],
-["/b/","book","ب؛ با لرزش تارهای صوتی"],
-["/t/","tea","ت"],
-["/d/","dog","د"],
-["/k/","cat","ک"],
-["/ɡ/","go","گ"],
-["/f/","fish","ف"],
-["/v/","very","و؛ با تماس دندان بالا و لب پایین"],
-["/θ/","think","th بی‌صدا؛ نوک زبان کمی بین دندان‌ها"],
-["/ð/","this","th صدادار؛ نوک زبان کمی بین دندان‌ها"],
-["/s/","sun","س"],
-["/z/","zoo","ز"],
-["/ʃ/","ship","ش"],
-["/ʒ/","vision","ژ"],
-["/h/","hat","ه"],
-["/tʃ/","chair","چ"],
-["/dʒ/","job","ج"],
-["/m/","man","م"],
-["/n/","no","ن"],
-["/ŋ/","sing","صدای پایانی sing؛ یک صدای واحد"],
-["/l/","leg","ل"],
-["/ɹ/","red","R آمریکایی؛ زبان نمی‌لرزد"],
-["/j/","yes","ی"],
-["/w/","we","و"]
-];
-
-/* Minimal pairs: word 1, word 2, sound 1, sound 2 */
-const minimalPairs=[
-["ship","sheep","/ɪ/","/i/"],
-["bit","beat","/ɪ/","/i/"],
-["full","fool","/ʊ/","/u/"],
-["cap","cup","/æ/","/ʌ/"],
-["fan","van","/f/","/v/"],
-["think","sink","/θ/","/s/"],
-["thin","then","/θ/","/ð/"],
-["rice","lice","/ɹ/","/l/"],
-["light","right","/l/","/ɹ/"],
-["bad","bed","/æ/","/ɛ/"]
-];
-
-let activePronTab="alphabet";
-let practiceAnswer=null;
-let practiceChoices=[];
-let practiceAnswered=false;
-
-/* IMPORTANT FIX:
-   IPA symbols are displayed only.
-   Speech always plays the real example word. */
-function phonemeCard(item){
-  return `<div class="sound-card">
-    <div class="sound-symbol">${item[0]}</div>
-    <div class="sound-example">${item[1]}</div>
-    <div class="sound-info">${item[2]||""}</div>
-    <button class="action-btn" onclick="speakWord('${item[1]}')">${t("play")}</button>
-  </div>`;
+const grammarLessons={
+"parts:noun":{
+faTitle:"اسم (Noun)",enTitle:"Noun",
+faIntro:"اسم کلمه‌ای است که نام یک شخص، مکان، شیء، حیوان، مفهوم یا احساس را بیان می‌کند.",
+enIntro:"A noun is a word that names a person, place, thing, animal, idea or feeling.",
+faDefinition:"در انگلیسی اسم می‌تواند نقش فاعل، مفعول یا مکمل را در جمله داشته باشد.",
+enDefinition:"In English, a noun can function as a subject, object or complement in a sentence.",
+formula:"Noun = Person / Place / Thing / Idea",
+examples:[
+["The teacher is kind.","معلم مهربان است. (teacher = اسم)"],
+["London is a beautiful city.","لندن شهر زیبایی است. (London و city = اسم)"],
+["I love music.","من موسیقی را دوست دارم. (music = اسم)"],
+["Happiness is important.","خوشبختی مهم است. (happiness = اسم)"]
+],
+faTypes:"انواع مهم اسم",
+enTypes:"Common noun types",
+types:[
+["اسم خاص (Proper Noun)","نام مشخص افراد و مکان‌ها؛ مانند Ali, London"],
+["اسم عام (Common Noun)","نام عمومی؛ مانند city, student, book"],
+["اسم قابل‌شمارش (Countable)","اسمی که می‌توان آن را شمرد؛ مانند apple, chair"],
+["اسم غیرقابل‌شمارش (Uncountable)","اسمی که معمولاً به‌صورت واحد شمرده نمی‌شود؛ مانند water, information"],
+["اسم انتزاعی (Abstract)","مفهوم یا احساس؛ مانند love, freedom"],
+["اسم جمعی (Collective)","نام یک گروه؛ مانند team, family"]
+],
+faTips:"اسم خاص در انگلیسی معمولاً با حرف بزرگ شروع می‌شود. اسم‌های قابل‌شمارش می‌توانند مفرد یا جمع باشند؛ اما اسم‌های غیرقابل‌شمارش معمولاً با فعل مفرد می‌آیند.",
+enTips:"Proper nouns usually begin with a capital letter. Countable nouns have singular and plural forms. Uncountable nouns usually take singular verbs.",
+quiz:[
+{q:"Which word is a noun?",options:["Beautiful","Happiness","Quickly","Run"],answer:1,fa:"کدام کلمه اسم است؟ Happiness به معنی خوشبختی یک مفهوم و اسم است."},
+{q:"Which one is a proper noun?",options:["city","teacher","London","book"],answer:2,fa:"London اسم خاص است؛ چون نام یک مکان مشخص است."},
+{q:"Which noun is uncountable?",options:["Apple","Chair","Water","Student"],answer:2,fa:"Water معمولاً غیرقابل‌شمارش است."}
+]
+},
+"parts:verb":{
+faTitle:"فعل (Verb)",enTitle:"Verb",
+faIntro:"فعل کلمه‌ای است که عمل، حالت یا اتفاق را بیان می‌کند.",
+enIntro:"A verb is a word that expresses an action, state or occurrence.",
+faDefinition:"فعل یکی از اجزای اصلی جمله است و معمولاً نشان می‌دهد فاعل چه کاری انجام می‌دهد یا در چه حالتی قرار دارد.",
+enDefinition:"A verb is a central part of a sentence. It tells us what the subject does or what state it is in.",
+formula:"Subject + Verb + (Object)",
+examples:[
+["She reads books.","او کتاب می‌خواند. (reads = فعل)"],
+["They play football.","آن‌ها فوتبال بازی می‌کنند. (play = فعل)"],
+["He is happy.","او خوشحال است. (is = فعل ربطی)"]
+],
+faTypes:"انواع پایه فعل",
+enTypes:"Basic verb types",
+types:[
+["فعل اصلی (Main Verb)","معنای اصلی عمل یا حالت را بیان می‌کند؛ مانند eat, write, sleep"],
+["فعل کمکی (Auxiliary Verb)","در ساخت زمان‌ها و سؤال‌ها کمک می‌کند؛ مانند be, do, have"],
+["فعل ربطی (Linking Verb)","فاعل را به مکمل وصل می‌کند؛ مانند be, seem, become"]
+],
+faTips:"در جمله انگلیسی معمولاً وجود فعل ضروری است. در زمان حال ساده برای he, she و it معمولاً به فعل اصلی s یا es اضافه می‌کنیم.",
+enTips:"An English sentence usually needs a verb. In the present simple, we usually add -s or -es to the main verb with he, she and it.",
+quiz:[
+{q:"Which word is a verb?",options:["Beautiful","Quickly","Write","Happiness"],answer:2,fa:"Write به معنی نوشتن است و فعل محسوب می‌شود."},
+{q:"Choose the correct sentence.",options:["She play tennis.","She plays tennis.","She playing tennis.","She are play tennis."],answer:1,fa:"برای She در زمان حال ساده به فعل s اضافه می‌کنیم."}
+]
+},
+"parts:adjective":{
+faTitle:"صفت (Adjective)",enTitle:"Adjective",
+faIntro:"صفت کلمه‌ای است که ویژگی یا حالت یک اسم یا ضمیر را توصیف می‌کند.",
+enIntro:"An adjective is a word that describes a noun or pronoun.",
+faDefinition:"صفت می‌تواند درباره رنگ، اندازه، سن، احساس، کیفیت یا ویژگی یک چیز اطلاعات بدهد.",
+enDefinition:"An adjective can describe color, size, age, feeling, quality or another characteristic.",
+formula:"Adjective + Noun  |  Subject + be + Adjective",
+examples:[
+["She has a beautiful voice.","او صدای زیبایی دارد."],
+["The room is clean.","اتاق تمیز است."],
+["He is very happy.","او بسیار خوشحال است."]
+],
+faTypes:"ویژگی‌های صفت",
+enTypes:"Adjective functions",
+types:[
+["صفت توصیفی","beautiful, tall, interesting"],
+["صفت رنگ","red, blue, green"],
+["صفت اندازه","big, small, huge"],
+["صفت احساسی","happy, sad, nervous"]
+],
+faTips:"صفت در انگلیسی معمولاً قبل از اسم قرار می‌گیرد؛ اما بعد از فعل‌های ربطی مثل be نیز می‌آید.",
+enTips:"Adjectives usually come before nouns, but they can also follow linking verbs such as be.",
+quiz:[
+{q:"Which word is an adjective?",options:["Run","Beautiful","Quickly","Under"],answer:1,fa:"Beautiful یک صفت به معنی زیباست."},
+{q:"Choose the correct phrase.",options:["A car red","A red car","Red a car","Car a red"],answer:1,fa:"صفت معمولاً پیش از اسم قرار می‌گیرد."}
+]
+},
+"foundations:terminology":{
+faTitle:"اصطلاحات پایه گرامر",enTitle:"Basic Grammar Terminology",
+faIntro:"برای یادگیری گرامر ابتدا باید با چند اصطلاح مهم آشنا شویم.",
+enIntro:"Before learning grammar, it is useful to understand some basic terms.",
+faDefinition:"این اصطلاحات به ما کمک می‌کنند ساختار جمله و نقش هر کلمه را بهتر بشناسیم.",
+enDefinition:"These terms help us understand sentence structure and the role of each word.",
+formula:"Subject + Verb + Object",
+examples:[
+["Ali reads a book.","Ali = فاعل، reads = فعل، a book = مفعول"],
+["She is a student.","She = فاعل، is = فعل، a student = مکمل فاعل"],
+["They are happy.","They = فاعل، are = فعل، happy = صفت و مکمل"]
+],
+faTypes:"اصطلاحات ضروری",
+enTypes:"Essential terms",
+types:[
+["Subject (فاعل)","کسی یا چیزی که جمله درباره آن است یا کاری انجام می‌دهد."],
+["Verb (فعل)","عمل یا حالت را بیان می‌کند."],
+["Object (مفعول)","کسی یا چیزی که عمل فعل روی آن انجام می‌شود."],
+["Complement (مکمل)","اطلاعاتی درباره فاعل یا مفعول کامل می‌کند."],
+["Phrase (عبارت)","گروهی از کلمات که معمولاً به‌تنهایی جمله کامل نیستند."],
+["Clause (بند)","گروهی از کلمات که دارای فاعل و فعل است."]
+],
+faTips:"برای تشخیص نقش کلمات، فقط به معنی آن‌ها توجه نکن؛ جایگاه و نقشی که در جمله دارند هم مهم است.",
+enTips:"To identify a word's grammatical role, look at both its meaning and its function in the sentence.",
+quiz:[
+{q:"In 'Ali plays football', what is 'Ali'?",options:["Verb","Object","Subject","Adjective"],answer:2,fa:"Ali فاعل جمله است."},
+{q:"Which part expresses an action?",options:["Noun","Verb","Adjective","Article"],answer:1,fa:"فعل عمل یا حالت را بیان می‌کند."}
+]
 }
+};
 
-function alphabetCard(item){
-  return `<div class="sound-card">
-    <div class="sound-symbol">${item[0]}</div>
-    <div class="sound-example">${item[1]}</div>
-    <div class="sound-info">${t("letterHint")}</div>
-    <button class="action-btn" onclick="speakWord('${item[0]}')">${t("play")}</button>
-  </div>`;
+/* GRAMMAR NAVIGATION AND PROGRESS */
+let grammarPage="home",activeGrammarCategory=null,activeGrammarLesson=null;
+let grammarCompleted=readStorage("farhadGrammarCompleted",[]);
+let grammarScores=readStorage("farhadGrammarScores",{});
+if(!Array.isArray(grammarCompleted))grammarCompleted=[];
+if(!grammarScores||typeof grammarScores!=="object")grammarScores={};
+
+function grammarText(fa,en){return currentLang==="fa"?fa:en}
+function getCategory(id){return grammarCategories.find(c=>c.id===id)}
+function getTopic(categoryId,lessonId){
+const category=getCategory(categoryId);
+return category?category.topics.find(x=>x[0]===lessonId):null;
 }
-
-function renderPronunciation(){
-  const box=document.getElementById("pronunciationContent");if(!box)return;
-  document.querySelectorAll("#pronTabs .tab-btn").forEach(btn=>{
-    btn.classList.toggle("active",btn.dataset.tab===activePronTab);
-  });
-
-  if(activePronTab==="alphabet"){
-    box.innerHTML=`<div class="card">
-      <h3>${t("alphabet")}</h3>
-      <p class="small">${currentLang==="fa"?"نام حروف انگلیسی را بشنو و با شکل نوشتاری آن‌ها آشنا شو.":"Listen to the names of the English letters."}</p>
-      <div class="sound-grid">${alphabet.map(alphabetCard).join("")}</div>
-    </div>`;
-  }
-  else if(activePronTab==="vowels"){
-    box.innerHTML=`<div class="card">
-      <h3>${t("vowels")}</h3>
-      <p class="small">${currentLang==="fa"?"مصوت‌ها صداهایی هستند که هنگام تولید آن‌ها جریان هوا بدون انسداد کامل از دهان خارج می‌شود. نمادها بر اساس یک نمایش آموزشی نزدیک به انگلیسی آمریکایی انتخاب شده‌اند؛ تلفظ بعضی صداها بین گویش‌ها فرق دارد.":"Vowels are produced without a complete blockage of airflow. These symbols follow a broadly American-oriented teaching model; pronunciation varies by accent."}</p>
-      <div class="sound-grid">${vowelSounds.map(phonemeCard).join("")}</div>
-    </div>`;
-  }
-  else if(activePronTab==="consonants"){
-    box.innerHTML=`<div class="card">
-      <h3>${t("consonants")}</h3>
-      <p class="small">${currentLang==="fa"?"در تولید صامت‌ها، جریان هوا در بخشی از مسیر گفتار محدود یا مسدود می‌شود. برای شنیدن هر صدا، روی دکمه زیر کلمه نمونه بزن.":"Consonants are made with some restriction or closure in the vocal tract. Press the button to hear the example word."}</p>
-      <div class="sound-grid">${consonantSounds.map(phonemeCard).join("")}</div>
-    </div>`;
-  }
-  else if(activePronTab==="pairs"){
-    box.innerHTML=`<div class="card">
-      <h3>${t("minimalPairs")}</h3><p class="small">${t("pairHint")}</p>
-      ${minimalPairs.map(pair=>`<div class="sound-card" style="margin-bottom:9px">
-        <div class="sound-example">${pair[0]} <span style="color:var(--gold)">/</span> ${pair[1]}</div>
-        <div class="sound-info">${pair[2]} &nbsp; | &nbsp; ${pair[3]}</div>
-        <div class="actions">
-          <button class="action-btn" onclick="speakWord('${pair[0]}')">${pair[0]} 🔊</button>
-          <button class="action-btn" onclick="speakWord('${pair[1]}')">${pair[1]} 🔊</button>
-        </div>
-      </div>`).join("")}
-    </div>`;
-  }
-  else if(activePronTab==="practice"){
-    makePractice();
-  }
+function lessonKey(categoryId,lessonId){return categoryId+":"+lessonId}
+function isLessonCompleted(categoryId,lessonId){return grammarCompleted.includes(lessonKey(categoryId,lessonId))}
+function getAllGrammarLessons(){return grammarCategories.reduce((sum,c)=>sum+c.topics.length,0)}
+function updateGrammarStats(){
+const total=getAllGrammarLessons(),done=grammarCompleted.length;
+const percent=total?Math.round(done/total*100):0;
+const countEl=document.getElementById("grammarLessonCount");
+if(countEl)countEl.textContent=done;
+const percentEl=document.getElementById("grammarPercent");
+if(percentEl)percentEl.textContent=currentLang==="fa"?percent.toLocaleString("fa-IR")+"٪":percent+"%";
+const bar=document.getElementById("grammarProgressBar");
+if(bar)bar.style.width=percent+"%";
+const progressCount=document.getElementById("grammarProgressCount");
+if(progressCount)progressCount.textContent=done;
 }
-
-document.getElementById("pronTabs").addEventListener("click",event=>{
-  const btn=event.target.closest("button[data-tab]");
-  if(!btn)return;
-  activePronTab=btn.dataset.tab;
-  renderPronunciation();
+function renderGrammarHome(){
+grammarPage="home";
+document.getElementById("grammarHome").style.display="block";
+document.getElementById("grammarCategoryPage").style.display="none";
+document.getElementById("grammarLessonPage").style.display="none";
+const query=(document.getElementById("grammarSearch").value||"").trim().toLowerCase();
+const list=document.getElementById("grammarCategoryList");
+const filtered=grammarCategories.filter(c=>{
+const text=[c.fa,c.en,c.descFa,c.descEn,...c.topics.flatMap(x=>[x[1],x[2]])].join(" ").toLowerCase();
+return text.includes(query);
 });
+list.innerHTML=filtered.map(c=>{
+const done=c.topics.filter(x=>isLessonCompleted(c.id,x[0])).length;
+return `<button class="grammar-category" onclick="openGrammarCategory('${c.id}')">
+<span class="category-icon">${c.icon}</span>
+<span class="category-info">
+<strong>${grammarText(c.fa,c.en)}</strong>
+<small>${grammarText(c.descFa,c.descEn)}</small>
+<span class="level-label">${c.level}</span>
+</span>
+<span class="category-arrow">${done}/${c.topics.length} ›</span>
+</button>`;
+}).join("")||`<p class="empty">${grammarText("موردی پیدا نشد.","No results found.")}</p>`;
+updateGrammarStats();
+}
+function openGrammarCategory(id,keepScroll){
+const category=getCategory(id);if(!category)return;
+activeGrammarCategory=id;grammarPage="category";
+document.getElementById("grammarHome").style.display="none";
+document.getElementById("grammarCategoryPage").style.display="block";
+document.getElementById("grammarLessonPage").style.display="none";
+document.getElementById("grammarCategoryTitle").textContent=grammarText(category.fa,category.en);
+document.getElementById("grammarCategoryDescription").textContent=grammarText(category.descFa,category.descEn);
+const done=category.topics.filter(x=>isLessonCompleted(id,x[0])).length;
+document.getElementById("categoryProgressText").textContent=done+" / "+category.topics.length;
+document.getElementById("categoryProgressBar").style.width=(done/category.topics.length*100)+"%";
+document.getElementById("grammarTopicList").innerHTML=category.topics.map((topic,index)=>{
+const complete=isLessonCompleted(id,topic[0]);
+return `<button class="topic-row" onclick="openGrammarLesson('${id}','${topic[0]}')">
+<span><strong>${index+1}. ${grammarText(topic[1],topic[2])}</strong><small>${grammarText("سطح","Level")} ${topic[3]}</small></span>
+<span class="topic-status">${complete?"✓ "+grammarText("تکمیل‌شده","Completed"):grammarText("شروع درس","Start lesson")} ›</span>
+</button>`;
+}).join("");
+if(!keepScroll)window.scrollTo(0,0);
+}
+function grammarBack(){
+if(grammarPage==="lesson"){openGrammarCategory(activeGrammarCategory);return}
+if(grammarPage==="category"){renderGrammarHome();window.scrollTo(0,0)}
+}
+function openGrammarLesson(categoryId,lessonId,keepScroll){
+const category=getCategory(categoryId),topic=getTopic(categoryId,lessonId);
+if(!category||!topic)return;
+activeGrammarCategory=categoryId;activeGrammarLesson=lessonId;grammarPage="lesson";
+document.getElementById("grammarHome").style.display="none";
+document.getElementById("grammarCategoryPage").style.display="none";
+document.getElementById("grammarLessonPage").style.display="block";
+const content=document.getElementById("grammarLessonContent");
+const lesson=grammarLessons[lessonKey(categoryId,lessonId)];
+const title=lesson?grammarText(lesson.faTitle,lesson.enTitle):grammarText(topic[1],topic[2]);
+const done=isLessonCompleted(categoryId,lessonId);
+if(!lesson){
+content.innerHTML=`<div class="lesson-head">
+<div class="eyebrow">${grammarText(category.fa,category.en)} · ${topic[3]}</div>
+<h2>${title}</h2>
+<p>${grammarText("این درس در برنامه آموزشی آکادمی قرار دارد. محتوای کامل آن شامل تعریف، ساختار، مثال، نکات مهم و تمرین در به‌روزرسانی‌های بعدی اضافه خواهد شد.","This lesson is part of the academy roadmap. Its full content, including definitions, structures, examples, notes and practice, will be added in future updates.")}</p>
+</div>
+<div class="lesson-section">
+<h3>${grammarText("مسیر یادگیری این درس","Lesson roadmap")}</h3>
+<ul>
+<li>${grammarText("تعریف فارسی و انگلیسی","Persian and English definition")}</li>
+<li>${grammarText("ساختار و فرمول","Structure and formula")}</li>
+<li>${grammarText("مثال‌های کاربردی با ترجمه","Examples with translations")}</li>
+<li>${grammarText("اشتباهات رایج و نکات مهم","Common mistakes and useful notes")}</li>
+<li>${grammarText("تمرین و آزمون پایانی","Practice and final quiz")}</li>
+</ul>
+</div>
+<button class="primary lesson-complete ${done?"done":""}" onclick="markGrammarComplete('${categoryId}','${lessonId}')">${done?grammarText("✓ این درس تکمیل شده","✓ Lesson completed"):grammarText("علامت‌گذاری به‌عنوان تکمیل‌شده","Mark as completed")}</button>`;
+}else{
+let examples=lesson.examples.map(ex=>`<div class="lesson-example"><div class="english">${ex[0]}</div><div class="persian">${ex[1]}</div><button class="action-btn" onclick="speakWord(${JSON.stringify(ex[0])})">🔊 ${grammarText("شنیدن مثال","Listen to example")}</button></div>`).join("");
+let types=lesson.types.map(x=>`<li><strong>${x[0]}</strong> — ${x[1]}</li>`).join("");
+content.innerHTML=`<div class="lesson-head">
+<div class="eyebrow">${grammarText(category.fa,category.en)} · ${topic[3]}</div>
+<h2>${title}</h2>
+<p>${grammarText(lesson.faIntro,lesson.enIntro)}</p>
+</div>
+<div class="lesson-section">
+<h3>${grammarText("۱. تعریف","1. Definition")}</h3>
+<p>${grammarText(lesson.faDefinition,lesson.enDefinition)}</p>
+<div class="small">${lesson.enDefinition}</div>
+</div>
+<div class="lesson-section">
+<h3>${grammarText("۲. ساختار و فرمول","2. Structure & Formula")}</h3>
+<div class="formula">${lesson.formula}</div>
+</div>
+<div class="lesson-section">
+<h3>${grammarText("۳. مثال‌ها","3. Examples")}</h3>
+${examples}
+</div>
+<div class="lesson-section">
+<h3>${grammarText(lesson.faTypes,lesson.enTypes)}</h3>
+<ul>${types}</ul>
+</div>
+<div class="lesson-section">
+<h3>${grammarText("۴. نکات مهم","4. Important Notes")}</h3>
+<div class="lesson-note">${grammarText(lesson.faTips,lesson.enTips)}</div>
+<div class="small">${lesson.enTips}</div>
+</div>
+<div class="lesson-section">
+<h3>${grammarText("۵. تمرین و آزمون","5. Practice Quiz")}</h3>
+<div id="grammarQuiz"></div>
+<div class="quiz-result" id="grammarQuizResult"></div>
+<button class="primary" onclick="submitGrammarQuiz('${categoryId}','${lessonId}')">${grammarText("بررسی پاسخ‌ها","Check answers")}</button>
+</div>
+<button class="primary lesson-complete ${done?"done":""}" onclick="markGrammarComplete('${categoryId}','${lessonId}')">${done?grammarText("✓ این درس تکمیل شده","✓ Lesson completed"):grammarText("✓ تکمیل این درس","✓ Complete this lesson")}</button>`;
+renderGrammarQuiz(lesson,categoryId,lessonId);
+}
+if(!keepScroll)window.scrollTo(0,0);
+}
+function renderGrammarQuiz(lesson,categoryId,lessonId){
+const box=document.getElementById("grammarQuiz");if(!box||!lesson.quiz)return;
+box.innerHTML=lesson.quiz.map((q,i)=>`<div class="quiz-question">
+<p><strong>${i+1}. ${q.q}</strong></p>
+${q.options.map((option,j)=>`<label style="display:block;font-size:12px;padding:8px 3px;line-height:1.7"><input type="radio" name="gq${i}" value="${j}"> ${option}</label>`).join("")}
+<div class="small" id="grammarExplain${i}" style="display:none"></div>
+</div>`).join("");
+}
+function submitGrammarQuiz(categoryId,lessonId){
+const lesson=grammarLessons[lessonKey(categoryId,lessonId)];if(!lesson||!lesson.quiz)return;
+let score=0,answeredCount=0;
+lesson.quiz.forEach((q,i)=>{
+const selected=document.querySelector(`input[name="gq${i}"]:checked`);
+const explain=document.getElementById("grammarExplain"+i);
+explain.style.display="block";
+if(selected){answeredCount++;if(Number(selected.value)===q.answer)score++}
+explain.textContent=(selected&&Number(selected.value)===q.answer?"✓ ":"✗ ")+(currentLang==="fa"?q.fa:"Correct answer: "+q.options[q.answer]);
+});
+const result=document.getElementById("grammarQuizResult");
+result.textContent=grammarText("نتیجه: ","Result: ")+score+" / "+lesson.quiz.length;
+grammarScores[lessonKey(categoryId,lessonId)]={score,total:lesson.quiz.length};
+writeStorage("farhadGrammarScores",grammarScores);
+if(answeredCount===lesson.quiz.length&&score===lesson.quiz.length)markGrammarComplete(categoryId,lessonId,true);
+}
+function markGrammarComplete(categoryId,lessonId,fromQuiz){
+const key=lessonKey(categoryId,lessonId);
+if(!grammarCompleted.includes(key)){grammarCompleted.push(key);writeStorage("farhadGrammarCompleted",grammarCompleted)}
+updateGrammarStats();
+openGrammarLesson(categoryId,lessonId,true);
+openGrammarCategoryRefresh(categoryId);
+}
+function openGrammarCategoryRefresh(categoryId){
+const category=getCategory(categoryId);if(!category)return;
+const done=category.topics.filter(x=>isLessonCompleted(categoryId,x[0])).length;
+const text=document.getElementById("categoryProgressText");
+const bar=document.getElementById("categoryProgressBar");
+if(text)text.textContent=done+" / "+category.topics.length;
+if(bar)bar.style.width=(done/category.topics.length*100)+"%";
+}
 
+/* PRONUNCIATION DATA */
+const alphabet=[["A","/eɪ/"],["B","/biː/"],["C","/siː/"],["D","/diː/"],["E","/iː/"],["F","/ɛf/"],["G","/dʒiː/"],["H","/eɪtʃ/"],["I","/aɪ/"],["J","/dʒeɪ/"],["K","/keɪ/"],["L","/ɛl/"],["M","/ɛm/"],["N","/ɛn/"],["O","/oʊ/"],["P","/piː/"],["Q","/kjuː/"],["R","/ɑr/"],["S","/ɛs/"],["T","/tiː/"],["U","/juː/"],["V","/viː/"],["W","/ˈdʌbəl.juː/"],["X","/ɛks/"],["Y","/waɪ/"],["Z","/ziː/"]];
+const vowelSounds=[
+["/i/","see","صدای ای؛ مانند see"],["/ɪ/","sit","ای کوتاه؛ مانند sit"],["/ɛ/","bed","صدای اِ؛ مانند bed"],["/æ/","cat","اَ باز؛ مانند cat"],["/ɑ/","father","آ؛ مانند father"],["/ɔ/","thought","صدای thought"],["/ʊ/","book","او کوتاه؛ مانند book"],["/u/","blue","او کشیده؛ مانند blue"],["/ʌ/","cup","صدای کوتاه؛ مانند cup"],["/ɝ/","bird","صدای اِر آمریکایی؛ مانند bird"],["/ə/","about","شوا؛ مانند about"],["/eɪ/","day","ترکیب اِی؛ مانند day"],["/aɪ/","my","ترکیب آی؛ مانند my"],["/ɔɪ/","boy","ترکیب اُی؛ مانند boy"],["/aʊ/","now","ترکیب آو؛ مانند now"],["/oʊ/","go","ترکیب اُو؛ مانند go"],["/ɪr/","near","صدای نزدیک به ایر؛ مانند near"],["/ɛr/","hair","صدای اِر؛ مانند hair"],["/ʊr/","tour","صدای اور؛ مانند tour"],["/ɑr/","car","صدای آر آمریکایی؛ مانند car"]
+];
+const consonantSounds=[
+["/p/","pen","پ؛ بدون لرزش تارهای صوتی"],["/b/","book","ب؛ با لرزش تارهای صوتی"],["/t/","tea","ت"],["/d/","dog","د"],["/k/","cat","ک"],["/ɡ/","go","گ"],["/f/","fish","ف"],["/v/","very","و؛ با تماس دندان بالا و لب پایین"],["/θ/","think","th بی‌صدا"],["/ð/","this","th صدادار"],["/s/","sun","س"],["/z/","zoo","ز"],["/ʃ/","ship","ش"],["/ʒ/","vision","ژ"],["/h/","hat","ه"],["/tʃ/","chair","چ"],["/dʒ/","job","ج"],["/m/","man","م"],["/n/","no","ن"],["/ŋ/","sing","صدای پایانی sing"],["/l/","leg","ل"],["/ɹ/","red","R آمریکایی؛ زبان نمی‌لرزد"],["/j/","yes","ی"],["/w/","we","و"]
+];
+const minimalPairs=[
+["ship","sheep","/ɪ/","/i/"],["bit","beat","/ɪ/","/i/"],["full","fool","/ʊ/","/u/"],["cap","cup","/æ/","/ʌ/"],["fan","van","/f/","/v/"],["think","sink","/θ/","/s/"],["thin","then","/θ/","/ð/"],["rice","lice","/ɹ/","/l/"],["light","right","/l/","/ɹ/"],["bad","bed","/æ/","/ɛ/"]
+];
+let activePronTab="alphabet",practiceAnswer=null,practiceChoices=[],practiceAnswered=false;
+function phonemeCard(item){
+return `<div class="sound-card"><div class="sound-symbol">${item[0]}</div><div class="sound-example">${item[1]}</div><div class="sound-info">${item[2]||""}</div><button class="action-btn" onclick="speakWord('${item[1]}')">${currentLang==="fa"?"🔊 پخش کلمه نمونه":"🔊 Play example word"}</button></div>`;
+}
+function alphabetCard(item){
+return `<div class="sound-card"><div class="sound-symbol">${item[0]}</div><div class="sound-example">${item[1]}</div><div class="sound-info">${t("letterHint")}</div><button class="action-btn" onclick="speakWord('${item[0]}')">${t("play")}</button></div>`;
+}
+function renderPronunciation(){
+const box=document.getElementById("pronunciationContent");if(!box)return;
+document.querySelectorAll("#pronTabs .tab-btn").forEach(btn=>btn.classList.toggle("active",btn.dataset.tab===activePronTab));
+if(activePronTab==="alphabet"){
+box.innerHTML=`<div class="card"><h3>${t("alphabet")}</h3><p class="small">${currentLang==="fa"?"نام حروف انگلیسی را بشنو و با شکل نوشتاری آن‌ها آشنا شو.":"Listen to the names of the English letters."}</p><div class="sound-grid">${alphabet.map(alphabetCard).join("")}</div></div>`;
+}else if(activePronTab==="vowels"){
+box.innerHTML=`<div class="card"><h3>${t("vowels")}</h3><p class="small">${currentLang==="fa"?"مصوت‌ها صداهایی هستند که جریان هوا بدون انسداد کامل از دهان خارج می‌شود.":"Vowels are produced without a complete blockage of airflow."}</p><div class="sound-grid">${vowelSounds.map(phonemeCard).join("")}</div></div>`;
+}else if(activePronTab==="consonants"){
+box.innerHTML=`<div class="card"><h3>${t("consonants")}</h3><p class="small">${currentLang==="fa"?"در تولید صامت‌ها جریان هوا در بخشی از مسیر گفتار محدود یا مسدود می‌شود.":"Consonants are made with some restriction or closure in the vocal tract."}</p><div class="sound-grid">${consonantSounds.map(phonemeCard).join("")}</div></div>`;
+}else if(activePronTab==="pairs"){
+box.innerHTML=`<div class="card"><h3>${t("minimalPairs")}</h3><p class="small">${t("pairHint")}</p>${minimalPairs.map(pair=>`<div class="sound-card" style="margin-bottom:9px"><div class="sound-example">${pair[0]} <span style="color:var(--gold)">/</span> ${pair[1]}</div><div class="sound-info">${pair[2]} &nbsp; | &nbsp; ${pair[3]}</div><div class="actions"><button class="action-btn" onclick="speakWord('${pair[0]}')">${pair[0]} 🔊</button><button class="action-btn" onclick="speakWord('${pair[1]}')">${pair[1]} 🔊</button></div></div>`).join("")}</div>`;
+}else if(activePronTab==="practice"){makePractice()}
+}
+document.getElementById("pronTabs").addEventListener("click",event=>{
+const btn=event.target.closest("button[data-tab]");if(!btn)return;
+activePronTab=btn.dataset.tab;renderPronunciation();
+});
 function makePractice(){
-  const box=document.getElementById("pronunciationContent");
-  const pool=minimalPairs[Math.floor(Math.random()*minimalPairs.length)];
-  practiceAnswer=Math.random()<0.5?pool[0]:pool[1];
-  practiceChoices=[pool[0],pool[1]];
-  if(Math.random()<0.5)practiceChoices.reverse();
-  practiceAnswered=false;
-
-  box.innerHTML=`<div class="card">
-    <h3>${t("practiceTitle")}</h3>
-    <p class="small">${t("practiceInstruction")}</p>
-    <button class="primary" onclick="speakWord(practiceAnswer)">${t("playQuestion")}</button>
-    <div id="practiceOptions" style="margin-top:15px">
-      ${practiceChoices.map(word=>`<button class="option" onclick="checkPractice('${word}',this)">${word}</button>`).join("")}
-    </div>
-    <div class="feedback" id="practiceFeedback"></div>
-    <button class="action-btn" onclick="makePractice()">${t("nextPractice")}</button>
-    <p class="small">${t("soundNote")}</p>
-  </div>`;
+const box=document.getElementById("pronunciationContent"),pool=minimalPairs[Math.floor(Math.random()*minimalPairs.length)];
+practiceAnswer=Math.random()<0.5?pool[0]:pool[1];practiceChoices=[pool[0],pool[1]];
+if(Math.random()<0.5)practiceChoices.reverse();practiceAnswered=false;
+box.innerHTML=`<div class="card"><h3>${t("practiceTitle")}</h3><p class="small">${t("practiceInstruction")}</p><button class="primary" onclick="speakWord(practiceAnswer)">${t("playQuestion")}</button><div id="practiceOptions" style="margin-top:15px">${practiceChoices.map(word=>`<button class="option" onclick="checkPractice('${word}',this)">${word}</button>`).join("")}</div><div class="feedback" id="practiceFeedback"></div><button class="action-btn" onclick="makePractice()">${t("nextPractice")}</button><p class="small">${t("soundNote")}</p></div>`;
 }
 function checkPractice(choice,button){
-  if(practiceAnswered)return;
-  practiceAnswered=true;
-  const feedback=document.getElementById("practiceFeedback");
-  document.querySelectorAll("#practiceOptions button").forEach(b=>{
-    b.disabled=true;
-    if(b.textContent===practiceAnswer)b.classList.add("correct");
-  });
-  if(choice===practiceAnswer)feedback.textContent=t("correctAnswer");
-  else{
-    button.classList.add("wrong");
-    feedback.textContent=t("wrongAnswer")+practiceAnswer;
-  }
+if(practiceAnswered)return;practiceAnswered=true;
+const feedback=document.getElementById("practiceFeedback");
+document.querySelectorAll("#practiceOptions button").forEach(b=>{b.disabled=true;if(b.textContent===practiceAnswer)b.classList.add("correct")});
+if(choice===practiceAnswer)feedback.textContent=t("correctAnswer");
+else{button.classList.add("wrong");feedback.textContent=t("wrongAnswer")+practiceAnswer}
 }
 
 /* START */
 applyLanguage();
+updateGrammarStats();
 
 if("serviceWorker" in navigator){
-  window.addEventListener("load",()=>{
-    navigator.serviceWorker.register("./sw.js")
-      .then(()=>console.log("Offline mode enabled!"))
-      .catch(error=>console.error("Service Worker Error:",error));
-  });
+window.addEventListener("load",()=>{
+navigator.serviceWorker.register("./sw.js")
+.then(()=>console.log("Offline mode enabled!"))
+.catch(error=>console.error("Service Worker Error:",error));
+});
 }
 </script>
 </body>
