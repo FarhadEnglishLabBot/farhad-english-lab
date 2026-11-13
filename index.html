@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
@@ -224,7 +223,7 @@ footer{text-align:center;color:#64748b;font-size:10px;padding:25px 12px}
 
 <button class="tile" onclick="openView('topicsView')">
 <span class="tile-icon">🗂️</span>
-<span class="tile-title data-i18n="topics">واژگان موضوعی</span>
+<span class="tile-title" data-i18n="topics">واژگان موضوعی</span>
 <span class="tile-desc" data-i18n="topicsDesc">لغات دسته‌بندی‌شده</span>
 </button>
 
@@ -283,13 +282,21 @@ footer{text-align:center;color:#64748b;font-size:10px;padding:25px 12px}
 </section>
 
 <section id="grammarView" class="view"><button class="back" onclick="goHome()" data-i18n="back">← بازگشت به خانه</button><div class="coming"><div class="big">🎓</div><h2 data-i18n="grammar">آکادمی گرامر</h2><span data-i18n="coming">این بخش در مرحله بعدی توسعه ساخته می‌شه.</span></div></section>
+
 <section id="pronunciationView" class="view"><button class="back" onclick="goHome()" data-i18n="back">← بازگشت به خانه</button><div class="coming"><div class="big">🗣️</div><h2 data-i18n="pronunciation">تلفظ و آواشناسی</h2><span data-i18n="coming">این بخش در مرحله بعدی توسعه ساخته می‌شه.</span></div></section>
+
 <section id="listeningView" class="view"><button class="back" onclick="goHome()" data-i18n="back">← بازگشت به خانه</button><div class="coming"><div class="big">🎧</div><h2 data-i18n="listening">شنیداری</h2><span data-i18n="coming">این بخش در مرحله بعدی توسعه ساخته می‌شه.</span></div></section>
+
 <section id="speakingView" class="view"><button class="back" onclick="goHome()" data-i18n="back">← بازگشت به خانه</button><div class="coming"><div class="big">💬</div><h2 data-i18n="speaking">مکالمه</h2><span data-i18n="coming">این بخش در مرحله بعدی توسعه ساخته می‌شه.</span></div></section>
+
 <section id="readingView" class="view"><button class="back" onclick="goHome()" data-i18n="back">← بازگشت به خانه</button><div class="coming"><div class="big">📚</div><h2 data-i18n="reading">خواندن</h2><span data-i18n="coming">این بخش در مرحله بعدی توسعه ساخته می‌شه.</span></div></section>
+
 <section id="writingView" class="view"><button class="back" onclick="goHome()" data-i18n="back">← بازگشت به خانه</button><div class="coming"><div class="big">✍️</div><h2 data-i18n="writing">نوشتن</h2><span data-i18n="coming">این بخش در مرحله بعدی توسعه ساخته می‌شه.</span></div></section>
+
 <section id="topicsView" class="view"><button class="back" onclick="goHome()" data-i18n="back">← بازگشت به خانه</button><div class="coming"><div class="big">🗂️</div><h2 data-i18n="topics">واژگان موضوعی</h2><span data-i18n="coming">این بخش در مرحله بعدی توسعه ساخته می‌شه.</span></div></section>
+
 <section id="revisionView" class="view"><button class="back" onclick="goHome()" data-i18n="back">← بازگشت به خانه</button><div class="coming"><div class="big">🔁</div><h2 data-i18n="revision">مرور هوشمند</h2><span data-i18n="coming">این بخش در مرحله بعدی توسعه ساخته می‌شه.</span></div></section>
+
 <section id="progressView" class="view"><button class="back" onclick="goHome()" data-i18n="back">← بازگشت به خانه</button><div class="coming"><div class="big">📊</div><h2 data-i18n="progress">پیشرفت من</h2><span data-i18n="coming">این بخش در مرحله بعدی توسعه ساخته می‌شه.</span></div></section>
 
 </main>
@@ -385,7 +392,9 @@ let favorites=JSON.parse(localStorage.getItem("farhadFavorites")||"[]");
 let current=null;
 let answered=false;
 
-function t(key){return translations[currentLang][key]||key}
+function t(key){
+return translations[currentLang][key]||key;
+}
 
 function applyLanguage(){
 document.documentElement.lang=currentLang;
@@ -393,7 +402,9 @@ document.documentElement.dir=currentLang==="fa"?"rtl":"ltr";
 
 document.querySelectorAll("[data-i18n]").forEach(el=>{
 const key=el.getAttribute("data-i18n");
-if(translations[currentLang][key])el.textContent=translations[currentLang][key];
+if(translations[currentLang][key]){
+el.textContent=translations[currentLang][key];
+}
 });
 
 document.getElementById("languageToggle").textContent=
@@ -414,16 +425,21 @@ applyLanguage();
 function openView(id){
 document.querySelectorAll(".view").forEach(v=>v.classList.remove("active"));
 document.getElementById(id).classList.add("active");
+
 if(id==="favoritesView")renderFavorites();
 if(id==="quizView")nextQuestion();
 if(id==="dictionaryView")searchWords();
+
 window.scrollTo(0,0);
 }
 
-function goHome(){openView("homeView")}
+function goHome(){
+openView("homeView");
+}
 
 function makeCard(word){
 const saved=favorites.includes(word.w);
+
 return `<div class="card">
 <div class="word">${word.w}</div>
 <div class="ipa">${word.p} · ${word.l}</div>
@@ -440,17 +456,23 @@ ${saved?t("saved"):t("save")}
 function searchWords(){
 const input=document.getElementById("search");
 if(!input)return;
+
 const q=input.value.trim().toLowerCase();
+
 const found=words.filter(x=>
 x.w.toLowerCase().includes(q)||x.m.toLowerCase().includes(q)
 );
+
 document.getElementById("wordList").innerHTML=
-found.length?found.map(makeCard).join(""):`<p class="empty">${t("notFound")}</p>`;
+found.length?
+found.map(makeCard).join(""):
+`<p class="empty">${t("notFound")}</p>`;
 }
 
 function toggleFavorite(name){
 favorites=favorites.includes(name)?
-favorites.filter(x=>x!==name):[...favorites,name];
+favorites.filter(x=>x!==name):
+[...favorites,name];
 
 localStorage.setItem("farhadFavorites",JSON.stringify(favorites));
 searchWords();
@@ -459,22 +481,27 @@ renderFavorites();
 
 function renderFavorites(){
 const list=words.filter(x=>favorites.includes(x.w));
+
 document.getElementById("favoriteList").innerHTML=
-list.length?list.map(makeCard).join():
+list.length?
+list.map(makeCard).join(""):
 `<p class="empty">${t("emptyFavorites")}</p>`;
 }
 
 function nextQuestion(){
 answered=false;
 current=words[Math.floor(Math.random()*words.length)];
+
 document.getElementById("question").textContent=current.w;
 document.getElementById("feedback").textContent="";
 
 let choices=[current.m];
+
 while(choices.length<4){
 const choice=words[Math.floor(Math.random()*words.length)].m;
 if(!choices.includes(choice))choices.push(choice);
 }
+
 choices.sort(()=>Math.random()-.5);
 
 document.getElementById("options").innerHTML=choices.map(x=>
@@ -492,12 +519,15 @@ if(b.textContent===current.m)b.classList.add("correct");
 });
 
 document.getElementById("feedback").textContent=
-answer===current.m?t("right"):t("wrong")+current.m;
+answer===current.m?
+t("right"):
+t("wrong")+current.m;
 }
 
 function updateProgress(){
 document.getElementById("wordCount").textContent=
 currentLang==="fa"?"۰ / ۴۰۰۰":"0 / 4000";
+
 document.getElementById("progressFill").style.width="0%";
 }
 
