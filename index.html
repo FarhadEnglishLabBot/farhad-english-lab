@@ -20,6 +20,7 @@
   --muted:#9aa9bd;
   --gold:#e9c46a;
   --blue:#3978df;
+  --green:#22c55e;
 }
 *{box-sizing:border-box}
 body{
@@ -29,7 +30,7 @@ body{
   font-family:Tahoma,Arial,sans-serif;
   min-height:100vh;
 }
-button,input{font:inherit}
+button,input,select{font:inherit}
 button{cursor:pointer}
 header{
   padding:22px 18px 18px;
@@ -120,7 +121,6 @@ header{
   border-radius:16px;
   padding:16px;
   color:var(--text);
-  transition:transform .15s;
 }
 .tile:active{transform:scale(.98)}
 .tile-icon{
@@ -189,9 +189,25 @@ h2{font-size:19px;margin:5px 0 15px}
   color:white;
   font-size:14px;
   outline:none;
-  margin-bottom:14px;
+  margin-bottom:10px;
 }
 .search:focus{border-color:var(--gold)}
+.filters{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:9px;
+  margin-bottom:14px;
+}
+.filter{
+  width:100%;
+  padding:11px;
+  border-radius:10px;
+  background:var(--surface);
+  border:1px solid var(--border);
+  color:var(--text);
+  font-size:12px;
+  outline:none;
+}
 .card{
   background:var(--surface);
   border:1px solid var(--border);
@@ -213,6 +229,12 @@ h2{font-size:19px;margin:5px 0 15px}
   font-size:13px;
 }
 .meaning{font-size:16px;margin-top:12px}
+.definition{
+  font-size:12px;
+  color:var(--muted);
+  margin-top:8px;
+  line-height:1.8;
+}
 .example{
   color:#d1d9e5;
   background:#111b2a;
@@ -224,12 +246,34 @@ h2{font-size:19px;margin:5px 0 15px}
   line-height:1.8;
   font-size:13px;
 }
-.actions{display:flex;gap:8px;margin-top:13px}
-.small{
-  font-size:11px;
+.example-translation{
   color:var(--muted);
+  font-size:12px;
   margin-top:7px;
   line-height:1.8;
+}
+.word-meta{
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+  margin-top:12px;
+}
+.tag{
+  background:#293950;
+  color:#cbd5e1;
+  padding:5px 9px;
+  border-radius:20px;
+  font-size:10px;
+}
+.tag.learned{
+  background:#14532d;
+  color:#bbf7d0;
+}
+.actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:13px;
 }
 .action-btn,.primary,.option{
   border:0;
@@ -238,6 +282,11 @@ h2{font-size:19px;margin:5px 0 15px}
   font-size:12px;
 }
 .action-btn{background:#34445c;color:white}
+.action-btn:active{opacity:.8}
+.action-btn.learned-btn{
+  background:#14532d;
+  color:#bbf7d0;
+}
 .primary{background:var(--blue);color:white}
 .primary:disabled{opacity:.5;cursor:not-allowed}
 .question{
@@ -255,7 +304,6 @@ h2{font-size:19px;margin:5px 0 15px}
   margin:8px 0;
   border:1px solid #435570;
   padding:13px;
-  transition:background .15s;
 }
 .option:disabled{opacity:1;cursor:default}
 .option.correct{
@@ -286,6 +334,12 @@ h2{font-size:19px;margin:5px 0 15px}
   line-height:2;
 }
 .coming .big{font-size:35px}
+.small{
+  font-size:11px;
+  color:var(--muted);
+  margin-top:7px;
+  line-height:1.8;
+}
 footer{
   text-align:center;
   color:#64748b;
@@ -423,7 +477,28 @@ footer{
 <section id="dictionaryView" class="view">
   <button class="back" onclick="goHome()" data-i18n="back">← بازگشت به خانه</button>
   <h2 data-i18n="dictionary">دیکشنری انگلیسی</h2>
-  <input class="search" id="search" placeholder="کلمه انگلیسی یا معنی فارسی را بنویس...">
+
+  <input class="search" id="search"
+    placeholder="کلمه انگلیسی یا معنی فارسی را بنویس...">
+
+  <div class="filters">
+    <select class="filter" id="levelFilter">
+      <option value="all" data-i18n="allLevels">همه سطح‌ها</option>
+      <option value="A1">A1 - Beginner</option>
+      <option value="A2">A2 - Elementary</option>
+      <option value="B1">B1 - Intermediate</option>
+    </select>
+
+    <select class="filter" id="categoryFilter">
+      <option value="all" data-i18n="allCategories">همه موضوعات</option>
+      <option value="daily" data-i18n="dailyCategory">روزمره</option>
+      <option value="people" data-i18n="peopleCategory">افراد و ویژگی‌ها</option>
+      <option value="learning" data-i18n="learningCategory">یادگیری</option>
+      <option value="life" data-i18n="lifeCategory">زندگی</option>
+    </select>
+  </div>
+
+  <div class="small" id="dictionaryCount"></div>
   <div id="wordList"></div>
 </section>
 
@@ -521,7 +596,6 @@ footer{
 
 <section id="progressView" class="view">
   <button class="back" onclick="goHome()" data-i18n="back">← بازگشت به خانه</button>
-
   <h2 data-i18n="progress">پیشرفت من</h2>
 
   <div class="card">
@@ -548,6 +622,16 @@ footer{
     </div>
   </div>
 
+  <div class="card">
+    <div class="progress-head">
+      <strong data-i18n="learnedTitle">واژه‌های یادگرفته‌شده</strong>
+      <span class="progress-number" id="learnedCount">0</span>
+    </div>
+    <div class="small" data-i18n="learnedNote">
+      واژه‌هایی که یاد گرفته‌ای در این قسمت ثبت می‌شوند.
+    </div>
+  </div>
+
   <div class="small" data-i18n="statsNote">
     آمار آزمون‌ها به‌صورت خودکار ذخیره می‌شود.
   </div>
@@ -563,26 +647,26 @@ footer{
 /* ---------------- WORD DATABASE ---------------- */
 
 const words = [
-  {w:"Ability",p:"/əˈbɪləti/",m:"توانایی",e:"She has the ability to learn quickly.",l:"A2"},
-  {w:"Achieve",p:"/əˈtʃiːv/",m:"به دست آوردن، موفق شدن",e:"You can achieve your goals.",l:"B1"},
-  {w:"Always",p:"/ˈɔːlweɪz/",m:"همیشه",e:"I always drink coffee in the morning.",l:"A1"},
-  {w:"Beautiful",p:"/ˈbjuːtɪfəl/",m:"زیبا",e:"This is a beautiful place.",l:"A1"},
-  {w:"Believe",p:"/bɪˈliːv/",m:"باور داشتن",e:"I believe in you.",l:"A2"},
-  {w:"Brave",p:"/breɪv/",m:"شجاع",e:"The brave man helped the child.",l:"A2"},
-  {w:"Careful",p:"/ˈkerfəl/",m:"مراقب، بااحتیاط",e:"Be careful when you cross the street.",l:"A2"},
-  {w:"Change",p:"/tʃeɪndʒ/",m:"تغییر دادن، تغییر",e:"People can change.",l:"A1"},
-  {w:"Choose",p:"/tʃuːz/",m:"انتخاب کردن",e:"You can choose your favorite book.",l:"A1"},
-  {w:"Comfortable",p:"/ˈkʌmftərbəl/",m:"راحت",e:"This chair is very comfortable.",l:"A2"},
-  {w:"Create",p:"/kriˈeɪt/",m:"خلق کردن، ساختن",e:"I want to create something new.",l:"B1"},
-  {w:"Different",p:"/ˈdɪfərənt/",m:"متفاوت",e:"We have different ideas.",l:"A1"},
-  {w:"Difficult",p:"/ˈdɪfɪkəlt/",m:"دشوار، سخت",e:"English is not always difficult.",l:"A1"},
-  {w:"Dream",p:"/driːm/",m:"رویا، خواب دیدن",e:"Never stop following your dreams.",l:"A1"},
-  {w:"Enough",p:"/ɪˈnʌf/",m:"کافی",e:"I have enough time.",l:"A2"},
-  {w:"Experience",p:"/ɪkˈspɪriəns/",m:"تجربه",e:"Learning English is a great experience.",l:"B1"},
-  {w:"Friendly",p:"/ˈfrendli/",m:"دوستانه، خوش‌برخورد",e:"Our teacher is very friendly.",l:"A2"},
-  {w:"Improve",p:"/ɪmˈpruːv/",m:"بهبود دادن، پیشرفت کردن",e:"I want to improve my English.",l:"A2"},
-  {w:"Journey",p:"/ˈdʒɜːrni/",m:"سفر، مسیر",e:"Life is a long journey.",l:"B1"},
-  {w:"Knowledge",p:"/ˈnɑːlɪdʒ/",m:"دانش، آگاهی",e:"Knowledge is important.",l:"B1"}
+  {w:"Ability",p:"/əˈbɪləti/",m:"توانایی",d:"The skill or power to do something.",e:"She has the ability to learn quickly.",et:"او توانایی یادگیری سریع را دارد.",l:"A2",c:"learning"},
+  {w:"Achieve",p:"/əˈtʃiːv/",m:"به دست آوردن، موفق شدن",d:"To succeed in doing something.",e:"You can achieve your goals.",et:"تو می‌توانی به هدف‌هایت برسی.",l:"B1",c:"learning"},
+  {w:"Always",p:"/ˈɔːlweɪz/",m:"همیشه",d:"At all times; every time.",e:"I always drink coffee in the morning.",et:"من همیشه صبح‌ها قهوه می‌نوشم.",l:"A1",c:"daily"},
+  {w:"Beautiful",p:"/ˈbjuːtɪfəl/",m:"زیبا",d:"Very nice to look at.",e:"This is a beautiful place.",et:"این مکان زیبایی است.",l:"A1",c:"people"},
+  {w:"Believe",p:"/bɪˈliːv/",m:"باور داشتن",d:"To think that something is true.",e:"I believe in you.",et:"من به تو باور دارم.",l:"A2",c:"life"},
+  {w:"Brave",p:"/breɪv/",m:"شجاع",d:"Ready to face danger or difficulty.",e:"The brave man helped the child.",et:"آن مرد شجاع به کودک کمک کرد.",l:"A2",c:"people"},
+  {w:"Careful",p:"/ˈkerfəl/",m:"مراقب، بااحتیاط",d:"Giving attention to avoid mistakes.",e:"Be careful when you cross the street.",et:"هنگام عبور از خیابان مراقب باش.",l:"A2",c:"daily"},
+  {w:"Change",p:"/tʃeɪndʒ/",m:"تغییر دادن، تغییر",d:"To make or become different.",e:"People can change.",et:"آدم‌ها می‌توانند تغییر کنند.",l:"A1",c:"life"},
+  {w:"Choose",p:"/tʃuːz/",m:"انتخاب کردن",d:"To decide which thing you want.",e:"You can choose your favorite book.",et:"می‌توانی کتاب موردعلاقه‌ات را انتخاب کنی.",l:"A1",c:"daily"},
+  {w:"Comfortable",p:"/ˈkʌmftərbəl/",m:"راحت",d:"Making you feel relaxed.",e:"This chair is very comfortable.",et:"این صندلی خیلی راحت است.",l:"A2",c:"daily"},
+  {w:"Create",p:"/kriˈeɪt/",m:"خلق کردن، ساختن",d:"To make something new.",e:"I want to create something new.",et:"می‌خواهم چیز جدیدی خلق کنم.",l:"B1",c:"learning"},
+  {w:"Different",p:"/ˈdɪfərənt/",m:"متفاوت",d:"Not the same as something else.",e:"We have different ideas.",et:"ما ایده‌های متفاوتی داریم.",l:"A1",c:"people"},
+  {w:"Difficult",p:"/ˈdɪfɪkəlt/",m:"دشوار، سخت",d:"Not easy to do or understand.",e:"English is not always difficult.",et:"انگلیسی همیشه سخت نیست.",l:"A1",c:"learning"},
+  {w:"Dream",p:"/driːm/",m:"رویا، خواب دیدن",d:"Something you hope to do or have.",e:"Never stop following your dreams.",et:"هرگز دنبال کردن رویاهایت را متوقف نکن.",l:"A1",c:"life"},
+  {w:"Enough",p:"/ɪˈnʌf/",m:"کافی",d:"As much as you need.",e:"I have enough time.",et:"من زمان کافی دارم.",l:"A2",c:"daily"},
+  {w:"Experience",p:"/ɪkˈspɪriəns/",m:"تجربه",d:"Knowledge gained by doing something.",e:"Learning English is a great experience.",et:"یادگیری انگلیسی تجربه‌ای عالی است.",l:"B1",c:"learning"},
+  {w:"Friendly",p:"/ˈfrendli/",m:"دوستانه، خوش‌برخورد",d:"Kind and pleasant to other people.",e:"Our teacher is very friendly.",et:"معلم ما بسیار خوش‌برخورد است.",l:"A2",c:"people"},
+  {w:"Improve",p:"/ɪmˈpruːv/",m:"بهبود دادن، پیشرفت کردن",d:"To become better.",e:"I want to improve my English.",et:"می‌خواهم انگلیسی‌ام را بهتر کنم.",l:"A2",c:"learning"},
+  {w:"Journey",p:"/ˈdʒɜːrni/",m:"سفر، مسیر",d:"The act of travelling from one place to another.",e:"Life is a long journey.",et:"زندگی سفری طولانی است.",l:"B1",c:"life"},
+  {w:"Knowledge",p:"/ˈnɑːlɪdʒ/",m:"دانش، آگاهی",d:"Information and understanding about something.",e:"Knowledge is important.",et:"دانش مهم است.",l:"B1",c:"learning"}
 ];
 
 /* ---------------- TRANSLATIONS ---------------- */
@@ -639,7 +723,22 @@ fa:{
   correctLabel:"پاسخ‌های درست",
   wrongLabel:"پاسخ‌های غلط",
   accuracyLabel:"درصد موفقیت",
-  statsNote:"آمار آزمون‌ها به‌صورت خودکار ذخیره می‌شود."
+  statsNote:"آمار آزمون‌ها به‌صورت خودکار ذخیره می‌شود.",
+  allLevels:"همه سطح‌ها",
+  allCategories:"همه موضوعات",
+  dailyCategory:"روزمره",
+  peopleCategory:"افراد و ویژگی‌ها",
+  learningCategory:"یادگیری",
+  lifeCategory:"زندگی",
+  learnedTitle:"واژه‌های یادگرفته‌شده",
+  learnedNote:"واژه‌هایی که یاد گرفته‌ای در این قسمت ثبت می‌شوند.",
+  learned:"✓ یاد گرفتم",
+  notLearned:"علامت‌گذاری به‌عنوان یادگرفته‌شده",
+  listen:"🔊 شنیدن تلفظ",
+  definition:"تعریف ساده انگلیسی",
+  exampleLabel:"مثال",
+  resultCount:"تعداد واژه‌های نمایش‌داده‌شده:",
+  speechUnavailable:"قابلیت پخش صدا در این مرورگر در دسترس نیست."
 },
 en:{
   tagline:"Your personal English learning space",
@@ -692,34 +791,54 @@ en:{
   correctLabel:"Correct Answers",
   wrongLabel:"Wrong Answers",
   accuracyLabel:"Accuracy",
-  statsNote:"Your quiz statistics are saved automatically."
+  statsNote:"Your quiz statistics are saved automatically.",
+  allLevels:"All levels",
+  allCategories:"All topics",
+  dailyCategory:"Daily life",
+  peopleCategory:"People & traits",
+  learningCategory:"Learning",
+  lifeCategory:"Life",
+  learnedTitle:"Words I have learned",
+  learnedNote:"Words you have learned are recorded here.",
+  learned:"✓ Learned",
+  notLearned:"Mark as learned",
+  listen:"🔊 Listen",
+  definition:"Simple English definition",
+  exampleLabel:"Example",
+  resultCount:"Words displayed:",
+  speechUnavailable:"Speech is not available in this browser."
 }
 };
 
-/* ---------------- APP STATE ---------------- */
+/* ---------------- STORAGE ---------------- */
 
-function readStorage(key, fallback){
+function readStorage(key,fallback){
   try{
-    const value = localStorage.getItem(key);
-    return value === null ? fallback : JSON.parse(value);
+    const value=localStorage.getItem(key);
+    return value===null?fallback:JSON.parse(value);
   }catch(error){
     return fallback;
   }
 }
 
-let currentLang = localStorage.getItem("farhadLanguage") || "fa";
-if(!translations[currentLang]) currentLang = "fa";
+function writeStorage(key,value){
+  try{
+    localStorage.setItem(key,JSON.stringify(value));
+  }catch(error){
+    console.warn("Storage error:",error);
+  }
+}
 
-let favorites = readStorage("farhadFavorites", []);
-if(!Array.isArray(favorites)) favorites = [];
+let currentLang=localStorage.getItem("farhadLanguage")||"fa";
+if(!translations[currentLang]) currentLang="fa";
 
-let current = null;
-let answered = false;
-let currentChoices = [];
+let favorites=readStorage("farhadFavorites",[]);
+if(!Array.isArray(favorites)) favorites=[];
 
-/* ---------------- QUIZ STATISTICS ---------------- */
+let learnedWords=readStorage("farhadLearnedWords",[]);
+if(!Array.isArray(learnedWords)) learnedWords=[];
 
-let quizStats = readStorage("farhadQuizStats", {
+let quizStats=readStorage("farhadQuizStats",{
   correct:0,
   wrong:0,
   score:0
@@ -731,68 +850,48 @@ if(
   !Number.isFinite(quizStats.wrong) ||
   !Number.isFinite(quizStats.score)
 ){
-  quizStats = {
-    correct:0,
-    wrong:0,
-    score:0
-  };
+  quizStats={correct:0,wrong:0,score:0};
 }
 
-function saveQuizStats(){
-  try{
-    localStorage.setItem(
-      "farhadQuizStats",
-      JSON.stringify(quizStats)
-    );
-  }catch(error){
-    console.warn("Could not save quiz stats:",error);
-  }
-}
-
-function updateQuizStats(){
-  const total = quizStats.correct + quizStats.wrong;
-
-  const accuracy = total > 0
-    ? Math.round((quizStats.correct / total) * 100)
-    : 0;
-
-  document.getElementById("statScore").textContent = quizStats.score;
-  document.getElementById("statCorrect").textContent = quizStats.correct;
-  document.getElementById("statWrong").textContent = quizStats.wrong;
-  document.getElementById("statAccuracy").textContent = accuracy + "%";
-}
+let current=null;
+let answered=false;
+let currentChoices=[];
 
 /* ---------------- HELPERS ---------------- */
 
 function t(key){
-  return translations[currentLang][key] || key;
+  return translations[currentLang][key]||key;
 }
 
 function saveFavorites(){
-  try{
-    localStorage.setItem("farhadFavorites",JSON.stringify(favorites));
-  }catch(error){
-    console.warn("Could not save favorites:",error);
-  }
+  writeStorage("farhadFavorites",favorites);
+}
+
+function saveLearned(){
+  writeStorage("farhadLearnedWords",learnedWords);
+}
+
+function saveQuizStats(){
+  writeStorage("farhadQuizStats",quizStats);
 }
 
 /* ---------------- LANGUAGE ---------------- */
 
 function applyLanguage(){
-  document.documentElement.lang = currentLang;
-  document.documentElement.dir = currentLang === "fa" ? "rtl" : "ltr";
+  document.documentElement.lang=currentLang;
+  document.documentElement.dir=currentLang==="fa"?"rtl":"ltr";
 
   document.querySelectorAll("[data-i18n]").forEach(el=>{
-    const key = el.getAttribute("data-i18n");
+    const key=el.getAttribute("data-i18n");
     if(translations[currentLang][key]){
-      el.textContent = translations[currentLang][key];
+      el.textContent=translations[currentLang][key];
     }
   });
 
-  document.getElementById("languageToggle").textContent =
-    currentLang === "fa" ? "English" : "فارسی";
+  document.getElementById("languageToggle").textContent=
+    currentLang==="fa"?"English":"فارسی";
 
-  document.getElementById("search").placeholder = t("searchPlaceholder");
+  document.getElementById("search").placeholder=t("searchPlaceholder");
 
   searchWords();
   renderFavorites();
@@ -801,13 +900,11 @@ function applyLanguage(){
 }
 
 document.getElementById("languageToggle").addEventListener("click",()=>{
-  currentLang = currentLang === "fa" ? "en" : "fa";
+  currentLang=currentLang==="fa"?"en":"fa";
 
   try{
     localStorage.setItem("farhadLanguage",currentLang);
-  }catch(error){
-    console.warn("Could not save language:",error);
-  }
+  }catch(error){}
 
   applyLanguage();
 });
@@ -819,15 +916,18 @@ function openView(id){
     view.classList.remove("active");
   });
 
-  const target = document.getElementById(id);
+  const target=document.getElementById(id);
   if(!target) return;
 
   target.classList.add("active");
 
-  if(id === "favoritesView") renderFavorites();
-  if(id === "quizView") nextQuestion();
-  if(id === "dictionaryView") searchWords();
-  if(id === "progressView") updateQuizStats();
+  if(id==="favoritesView") renderFavorites();
+  if(id==="quizView") nextQuestion();
+  if(id==="dictionaryView") searchWords();
+  if(id==="progressView"){
+    updateQuizStats();
+    updateProgress();
+  }
 
   window.scrollTo(0,0);
 }
@@ -836,20 +936,69 @@ function goHome(){
   openView("homeView");
 }
 
+/* ---------------- SPEECH ---------------- */
+
+function speakWord(word){
+  if(!("speechSynthesis" in window)){
+    alert(t("speechUnavailable"));
+    return;
+  }
+
+  window.speechSynthesis.cancel();
+
+  const utterance=new SpeechSynthesisUtterance(word);
+  utterance.lang="en-US";
+  utterance.rate=0.85;
+
+  window.speechSynthesis.speak(utterance);
+}
+
 /* ---------------- DICTIONARY ---------------- */
 
 function makeCard(word){
-  const saved = favorites.includes(word.w);
+  const saved=favorites.includes(word.w);
+  const learned=learnedWords.includes(word.w);
+
+  const definitionLabel=t("definition");
+  const exampleLabel=t("exampleLabel");
 
   return `
     <div class="card">
       <div class="word">${word.w}</div>
+
       <div class="ipa">${word.p} · ${word.l}</div>
+
       <div class="meaning">${word.m}</div>
-      <div class="example">${word.e}</div>
+
+      <div class="definition">
+        <strong>${definitionLabel}:</strong>
+        <span dir="ltr">${word.d}</span>
+      </div>
+
+      <div class="example">
+        <strong>${exampleLabel}:</strong><br>
+        ${word.e}
+      </div>
+
+      <div class="example-translation">${word.et}</div>
+
+      <div class="word-meta">
+        <span class="tag">${word.l}</span>
+        ${learned?`<span class="tag learned">${t("learned")}</span>`:""}
+      </div>
+
       <div class="actions">
+        <button class="action-btn" onclick="speakWord('${word.w}')">
+          ${t("listen")}
+        </button>
+
         <button class="action-btn" onclick="toggleFavorite('${word.w}')">
-          ${saved ? t("saved") : t("save")}
+          ${saved?t("saved"):t("save")}
+        </button>
+
+        <button class="action-btn ${learned?"learned-btn":""}"
+          onclick="toggleLearned('${word.w}')">
+          ${learned?t("learned"):t("notLearned")}
         </button>
       </div>
     </div>
@@ -857,28 +1006,41 @@ function makeCard(word){
 }
 
 function searchWords(){
-  const input = document.getElementById("search");
-  const list = document.getElementById("wordList");
+  const input=document.getElementById("search");
+  const list=document.getElementById("wordList");
+  if(!input||!list) return;
 
-  if(!input || !list) return;
+  const query=input.value.trim().toLowerCase();
+  const level=document.getElementById("levelFilter").value;
+  const category=document.getElementById("categoryFilter").value;
 
-  const query = input.value.trim().toLowerCase();
+  const found=words.filter(word=>{
+    const matchesSearch=
+      word.w.toLowerCase().includes(query)||
+      word.m.toLowerCase().includes(query)||
+      word.d.toLowerCase().includes(query);
 
-  const found = words.filter(word =>
-    word.w.toLowerCase().includes(query) ||
-    word.m.toLowerCase().includes(query)
-  );
+    const matchesLevel=level==="all"||word.l===level;
+    const matchesCategory=category==="all"||word.c===category;
 
-  list.innerHTML = found.length
-    ? found.map(makeCard).join("")
-    : `<p class="empty">${t("notFound")}</p>`;
+    return matchesSearch&&matchesLevel&&matchesCategory;
+  });
+
+  document.getElementById("dictionaryCount").textContent=
+    t("resultCount")+" "+found.length;
+
+  list.innerHTML=found.length
+    ?found.map(makeCard).join("")
+    :`<p class="empty">${t("notFound")}</p>`;
 }
 
 document.getElementById("search").addEventListener("input",searchWords);
+document.getElementById("levelFilter").addEventListener("change",searchWords);
+document.getElementById("categoryFilter").addEventListener("change",searchWords);
 
 function toggleFavorite(name){
   if(favorites.includes(name)){
-    favorites = favorites.filter(item=>item !== name);
+    favorites=favorites.filter(item=>item!==name);
   }else{
     favorites.push(name);
   }
@@ -888,85 +1050,87 @@ function toggleFavorite(name){
   renderFavorites();
 }
 
+function toggleLearned(name){
+  if(learnedWords.includes(name)){
+    learnedWords=learnedWords.filter(item=>item!==name);
+  }else{
+    learnedWords.push(name);
+  }
+
+  saveLearned();
+  searchWords();
+  renderFavorites();
+  updateProgress();
+  updateQuizStats();
+}
+
 function renderFavorites(){
-  const container = document.getElementById("favoriteList");
+  const container=document.getElementById("favoriteList");
   if(!container) return;
 
-  const savedWords = words.filter(word=>favorites.includes(word.w));
+  const savedWords=words.filter(word=>favorites.includes(word.w));
 
-  container.innerHTML = savedWords.length
-    ? savedWords.map(makeCard).join("")
-    : `<p class="empty">${t("emptyFavorites")}</p>`;
+  container.innerHTML=savedWords.length
+    ?savedWords.map(makeCard).join("")
+    :`<p class="empty">${t("emptyFavorites")}</p>`;
 }
 
 /* ---------------- QUIZ ---------------- */
 
 function nextQuestion(){
-  answered = false;
+  answered=false;
 
-  current = words[Math.floor(Math.random() * words.length)];
+  current=words[Math.floor(Math.random()*words.length)];
 
-  document.getElementById("question").textContent = current.w;
-  document.getElementById("feedback").textContent = "";
+  document.getElementById("question").textContent=current.w;
+  document.getElementById("feedback").textContent="";
 
-  const correctAnswer = current.m;
-  currentChoices = [correctAnswer];
+  currentChoices=[current.m];
 
-  while(currentChoices.length < 4){
-    const randomWord = words[Math.floor(Math.random() * words.length)];
-    const choice = randomWord.m;
-
-    if(!currentChoices.includes(choice)){
-      currentChoices.push(choice);
+  while(currentChoices.length<4){
+    const randomWord=words[Math.floor(Math.random()*words.length)];
+    if(!currentChoices.includes(randomWord.m)){
+      currentChoices.push(randomWord.m);
     }
   }
 
-  /* Shuffle answers */
-  for(let i = currentChoices.length - 1; i > 0; i--){
-    const j = Math.floor(Math.random() * (i + 1));
-    [currentChoices[i],currentChoices[j]] =
+  for(let i=currentChoices.length-1;i>0;i--){
+    const j=Math.floor(Math.random()*(i+1));
+    [currentChoices[i],currentChoices[j]]=
       [currentChoices[j],currentChoices[i]];
   }
 
-  const optionsContainer = document.getElementById("options");
-
-  optionsContainer.innerHTML = currentChoices.map((choice,index)=>`
-    <button
-      class="option"
-      type="button"
-      data-choice-index="${index}">
-      ${choice}
-    </button>
-  `).join("");
+  document.getElementById("options").innerHTML=
+    currentChoices.map((choice,index)=>`
+      <button class="option" type="button"
+        data-choice-index="${index}">
+        ${choice}
+      </button>
+    `).join("");
 }
 
-/*
-  Click handling is attached ONCE to the options container.
-  It continues working even when the options are replaced.
-*/
 document.getElementById("options").addEventListener("click",function(event){
-  const button = event.target.closest("button.option");
+  const button=event.target.closest("button.option");
 
-  if(!button || !this.contains(button)) return;
-  if(answered || !current) return;
+  if(!button||!this.contains(button)) return;
+  if(answered||!current) return;
 
-  const index = Number(button.dataset.choiceIndex);
-  const selectedAnswer = currentChoices[index];
+  const index=Number(button.dataset.choiceIndex);
+  const selectedAnswer=currentChoices[index];
 
-  if(typeof selectedAnswer !== "string") return;
+  if(typeof selectedAnswer!=="string") return;
 
   checkAnswer(button,selectedAnswer);
 });
 
 function checkAnswer(button,answer){
-  if(answered || !current) return;
+  if(answered||!current) return;
 
-  answered = true;
+  answered=true;
 
-  /* Update statistics */
-  if(answer === current.m){
+  if(answer===current.m){
     quizStats.correct++;
-    quizStats.score += 10;
+    quizStats.score+=10;
   }else{
     quizStats.wrong++;
   }
@@ -974,43 +1138,56 @@ function checkAnswer(button,answer){
   saveQuizStats();
   updateQuizStats();
 
-  const optionButtons = document.querySelectorAll("#options .option");
+  document.querySelectorAll("#options .option").forEach(option=>{
+    option.disabled=true;
 
-  optionButtons.forEach(option=>{
-    option.disabled = true;
-
-    const index = Number(option.dataset.choiceIndex);
-    const optionAnswer = currentChoices[index];
-
-    if(optionAnswer === current.m){
+    const index=Number(option.dataset.choiceIndex);
+    if(currentChoices[index]===current.m){
       option.classList.add("correct");
     }
   });
 
-  if(answer !== current.m){
+  if(answer!==current.m){
     button.classList.add("wrong");
   }
 
-  document.getElementById("feedback").textContent =
-    answer === current.m
-      ? t("right")
-      : t("wrong") + current.m;
+  document.getElementById("feedback").textContent=
+    answer===current.m
+      ?t("right")
+      :t("wrong")+current.m;
 }
 
-document.getElementById("nextQuestionButton").addEventListener("click",nextQuestion);
+document.getElementById("nextQuestionButton")
+  .addEventListener("click",nextQuestion);
 
 /* ---------------- PROGRESS ---------------- */
 
 function updateProgress(){
-  const count = 0;
+  const count=learnedWords.length;
+  const percentage=Math.min((count/4000)*100,100);
 
-  document.getElementById("wordCount").textContent =
-    currentLang === "fa"
-      ? "۰ / ۴۰۰۰"
-      : "0 / 4000";
+  document.getElementById("wordCount").textContent=
+    currentLang==="fa"
+      ?count.toLocaleString("fa-IR")+" / ۴۰۰۰"
+      :count+" / 4000";
 
-  document.getElementById("progressFill").style.width =
-    (count / 4000 * 100) + "%";
+  document.getElementById("progressFill").style.width=
+    percentage+"%";
+
+  document.getElementById("learnedCount").textContent=count;
+}
+
+function updateQuizStats(){
+  const total=quizStats.correct+quizStats.wrong;
+
+  const accuracy=total>0
+    ?Math.round((quizStats.correct/total)*100)
+    :0;
+
+  document.getElementById("statScore").textContent=quizStats.score;
+  document.getElementById("statCorrect").textContent=quizStats.correct;
+  document.getElementById("statWrong").textContent=quizStats.wrong;
+  document.getElementById("statAccuracy").textContent=accuracy+"%";
 }
 
 /* ---------------- START APP ---------------- */
