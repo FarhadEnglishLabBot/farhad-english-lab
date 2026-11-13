@@ -1,5 +1,5 @@
 
-const CACHE_NAME = "farhad-english-lab-v5";
+const CACHE_NAME = "farhad-english-lab-v6";
 const CACHE_PREFIX = "farhad-english-lab-";
 
 const FILES_TO_CACHE = [
@@ -35,7 +35,6 @@ self.addEventListener("fetch", event => {
   if (event.request.method !== "GET") return;
 
   const url = new URL(event.request.url);
-
   if (url.origin !== self.location.origin) return;
 
   event.respondWith(
@@ -45,11 +44,10 @@ self.addEventListener("fetch", event => {
       return fetch(event.request).then(response => {
         if (response.ok) {
           const copy = response.clone();
-
-          caches.open(CACHE_NAME)
-            .then(cache => cache.put(event.request, copy));
+          caches.open(CACHE_NAME).then(cache =>
+            cache.put(event.request, copy)
+          );
         }
-
         return response;
       });
     })
