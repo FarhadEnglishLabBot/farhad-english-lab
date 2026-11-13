@@ -17,71 +17,41 @@
   --gold:#e9c46a;--blue:#3978df;--green:#22c55e;
 }
 *{box-sizing:border-box}
-body{
-  margin:0;background:var(--bg);color:var(--text);
-  font-family:Tahoma,Arial,sans-serif;min-height:100vh
-}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Tahoma,Arial,sans-serif;min-height:100vh}
 button,input,select{font:inherit}
 button{cursor:pointer}
-header{
-  padding:22px 18px 18px;
-  background:linear-gradient(135deg,#1c304d,#182033);
-  border-bottom:1px solid var(--border)
-}
-.topline{
-  max-width:760px;margin:auto;display:flex;
-  align-items:center;justify-content:space-between;gap:12px
-}
+header{padding:22px 18px 18px;background:linear-gradient(135deg,#1c304d,#182033);border-bottom:1px solid var(--border)}
+.topline{max-width:760px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:12px}
 .logo{font-size:20px;font-weight:800;direction:ltr;text-align:right}
 .sub{font-size:11px;color:var(--muted);margin-top:7px}
-.lang-btn{
-  background:#293a53;border:1px solid #52617a;color:var(--gold);
-  border-radius:11px;padding:9px 12px;font-size:12px
-}
+.lang-btn{background:#293a53;border:1px solid #52617a;color:var(--gold);border-radius:11px;padding:9px 12px;font-size:12px}
 .container{max-width:760px;margin:auto;padding:20px 16px 34px}
 .welcome{margin:5px 0 18px}
 .welcome h1{font-size:21px;margin:0 0 7px}
 .welcome p{color:var(--muted);font-size:13px;margin:0;line-height:1.8}
-.daily{
-  background:linear-gradient(120deg,#243650,#1b293e);
-  border:1px solid #3a4a61;border-radius:17px;
-  padding:17px;margin-bottom:23px
-}
+.daily{background:linear-gradient(120deg,#243650,#1b293e);border:1px solid #3a4a61;border-radius:17px;padding:17px;margin-bottom:23px}
 .eyebrow{font-size:10px;color:var(--gold);font-weight:bold}
 .daily-word{font-size:25px;font-weight:bold;direction:ltr;text-align:left;margin-top:8px}
 .daily-meaning{font-size:14px;margin-top:6px}
 .daily-example{font-size:12px;color:#cbd5e1;direction:ltr;text-align:left;margin-top:10px;line-height:1.7}
 .section-title{font-size:17px;margin:0 0 13px}
 .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
-.tile{
-  min-height:116px;text-align:right;background:var(--surface);
-  border:1px solid var(--border);border-radius:16px;
-  padding:16px;color:var(--text)
-}
+.tile{min-height:116px;text-align:right;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:16px;color:var(--text)}
 .tile:active{transform:scale(.98)}
 .tile-icon{font-size:25px;display:block;margin-bottom:13px}
 .tile-title{font-size:14px;font-weight:bold;display:block}
 .tile-desc{font-size:11px;color:var(--muted);display:block;margin-top:6px;line-height:1.6}
-.progress-card,.card{
-  background:var(--surface);border:1px solid var(--border);
-  border-radius:15px;padding:15px;margin-top:14px
-}
+.progress-card,.card{background:var(--surface);border:1px solid var(--border);border-radius:15px;padding:15px;margin-top:14px}
 .progress-head{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:13px}
 .progress-number{color:var(--gold);font-size:15px;font-weight:bold}
 .progress-track{height:7px;background:#344258;border-radius:20px;overflow:hidden;margin-top:12px}
 .progress-fill{height:100%;width:0;background:var(--gold);transition:width .3s}
 .view{display:none}
 .view.active{display:block}
-.back{
-  background:transparent;color:var(--gold);border:1px solid var(--border);
-  padding:9px 12px;border-radius:10px;margin-bottom:16px;font-size:12px
-}
+.back{background:transparent;color:var(--gold);border:1px solid var(--border);padding:9px 12px;border-radius:10px;margin-bottom:16px;font-size:12px}
 h2{font-size:19px;margin:5px 0 15px}
 h3{font-size:15px;margin:8px 0 12px}
-.search,.filter{
-  width:100%;padding:13px;border-radius:12px;background:var(--surface);
-  border:1px solid var(--border);color:white;font-size:13px;outline:none
-}
+.search,.filter{width:100%;padding:13px;border-radius:12px;background:var(--surface);border:1px solid var(--border);color:white;font-size:13px;outline:none}
 .search{margin-bottom:10px}
 .filters{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:14px}
 .card{margin-bottom:11px;margin-top:0}
@@ -89,27 +59,19 @@ h3{font-size:15px;margin:8px 0 12px}
 .ipa{color:#83b5ff;direction:ltr;text-align:left;margin-top:7px;font-size:14px}
 .meaning{font-size:16px;margin-top:12px}
 .definition{font-size:12px;color:var(--muted);margin-top:8px;line-height:1.8}
-.example{
-  color:#d1d9e5;background:#111b2a;padding:11px;border-radius:10px;
-  margin-top:12px;direction:ltr;text-align:left;line-height:1.8;font-size:13px
-}
+.example{color:#d1d9e5;background:#111b2a;padding:11px;border-radius:10px;margin-top:12px;direction:ltr;text-align:left;line-height:1.8;font-size:13px}
 .example-translation{color:var(--muted);font-size:12px;margin-top:7px;line-height:1.8}
 .word-meta{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px}
 .tag{background:#293950;color:#cbd5e1;padding:5px 9px;border-radius:20px;font-size:10px}
 .tag.learned{background:#14532d;color:#bbf7d0}
 .actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:13px}
-.action-btn,.primary,.option,.tab-btn{
-  border:0;border-radius:10px;padding:11px 13px;font-size:12px
-}
+.action-btn,.primary,.option,.tab-btn{border:0;border-radius:10px;padding:11px 13px;font-size:12px}
 .action-btn{background:#34445c;color:white}
 .action-btn.learned-btn{background:#14532d;color:#bbf7d0}
 .primary{background:var(--blue);color:white}
 .primary:disabled{opacity:.5}
 .question{font-size:21px;direction:ltr;text-align:left;margin:18px 0}
-.option{
-  display:block;width:100%;text-align:right;background:#293950;color:white;
-  margin:8px 0;border:1px solid #435570;padding:13px
-}
+.option{display:block;width:100%;text-align:right;background:#293950;color:white;margin:8px 0;border:1px solid #435570;padding:13px}
 .option:disabled{opacity:1}
 .option.correct{background:#166534!important;border-color:#22c55e!important}
 .option.wrong{background:#991b1b!important;border-color:#ef4444!important}
@@ -120,18 +82,12 @@ h3{font-size:15px;margin:8px 0 12px}
 .tab-btn{white-space:nowrap;background:#293950;color:#dbeafe;border:1px solid #435570}
 .tab-btn.active{background:#745c27;color:#fff0bd;border-color:var(--gold)}
 .sound-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
-.sound-card{
-  background:var(--surface);border:1px solid var(--border);
-  border-radius:13px;padding:13px;min-width:0
-}
+.sound-card{background:var(--surface);border:1px solid var(--border);border-radius:13px;padding:13px;min-width:0}
 .sound-symbol{font-size:27px;color:var(--gold);direction:ltr;text-align:left}
 .sound-example{font-size:17px;font-weight:bold;direction:ltr;text-align:left;margin-top:7px}
 .sound-info{font-size:11px;color:var(--muted);margin-top:7px;line-height:1.7}
 .sound-card button{margin-top:10px}
-.coming{
-  background:var(--surface);border:1px solid var(--border);
-  border-radius:16px;padding:22px;text-align:center;line-height:2
-}
+.coming{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;text-align:center;line-height:2}
 .coming .big{font-size:35px}
 footer{text-align:center;color:#64748b;font-size:10px;padding:25px 12px}
 [dir="ltr"] .tile,[dir="ltr"] .back,[dir="ltr"] .option{text-align:left}
@@ -162,14 +118,12 @@ footer{text-align:center;color:#64748b;font-size:10px;padding:25px 12px}
     <h1 data-i18n="welcome">به آزمایشگاه زبان انگلیسی خوش اومدی!</h1>
     <p data-i18n="welcomeSub">هر روز کمی تمرین کن و قدم‌به‌قدم پیشرفت کن.</p>
   </div>
-
   <div class="daily">
     <div class="eyebrow" data-i18n="dailyLabel">واژه امروز</div>
     <div class="daily-word">Curious</div>
     <div class="daily-meaning" data-i18n="dailyMeaning">کنجکاو</div>
     <div class="daily-example">She is curious about the world.</div>
   </div>
-
   <h2 class="section-title" data-i18n="sectionsTitle">بخش‌های آموزشی</h2>
   <div class="grid">
     <button class="tile" onclick="openView('dictionaryView')"><span class="tile-icon">📖</span><span class="tile-title" data-i18n="dictionary">دیکشنری</span><span class="tile-desc" data-i18n="dictionaryDesc">معنی، تلفظ و مثال واژه‌ها</span></button>
@@ -186,7 +140,6 @@ footer{text-align:center;color:#64748b;font-size:10px;padding:25px 12px}
     <button class="tile" onclick="openView('revisionView')"><span class="tile-icon">🔁</span><span class="tile-title" data-i18n="revision">مرور هوشمند</span><span class="tile-desc" data-i18n="revisionDesc">مرور و تثبیت آموخته‌ها</span></button>
     <button class="tile" onclick="openView('progressView')"><span class="tile-icon">📊</span><span class="tile-title" data-i18n="progress">پیشرفت من</span><span class="tile-desc" data-i18n="progressDesc">گزارش مسیر یادگیری</span></button>
   </div>
-
   <div class="progress-card">
     <div class="progress-head"><strong data-i18n="progressTitle">پیشرفت واژگان</strong><span class="progress-number" id="wordCount">۰ / ۴۰۰۰</span></div>
     <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
@@ -205,14 +158,10 @@ footer{text-align:center;color:#64748b;font-size:10px;padding:25px 12px}
     </select>
     <select class="filter" id="categoryFilter">
       <option value="all" data-i18n="allCategories">همه موضوعات</option>
-      <option value="daily" data-i18n="dailyCategory">روزمره</option>
-      <option value="people" data-i18n="peopleCategory">افراد و ویژگی‌ها</option>
-      <option value="learning" data-i18n="learningCategory">یادگیری</option>
-      <option value="life" data-i18n="lifeCategory">زندگی</option>
+      <option value="daily" data-i18n="dailyCategory">روزمره</option><option value="people" data-i18n="peopleCategory">افراد و ویژگی‌ها</option><option value="learning" data-i18n="learningCategory">یادگیری</option><option value="life" data-i18n="lifeCategory">زندگی</option>
     </select>
   </div>
-  <div class="small" id="dictionaryCount"></div>
-  <div id="wordList"></div>
+  <div class="small" id="dictionaryCount"></div><div id="wordList"></div>
 </section>
 
 <section id="learnedView" class="view">
@@ -244,8 +193,7 @@ footer{text-align:center;color:#64748b;font-size:10px;padding:25px 12px}
   <h2 data-i18n="quizTitle">آزمون واژگان</h2>
   <div class="card">
     <div class="small" data-i18n="quizInstruction">معنی کلمه زیر را انتخاب کن:</div>
-    <div class="question" id="question"></div>
-    <div id="options"></div>
+    <div class="question" id="question"></div><div id="options"></div>
     <div id="feedback" class="feedback"></div>
     <button class="primary" id="nextQuestionButton" data-i18n="nextQuestion">سؤال بعدی ←</button>
   </div>
@@ -253,8 +201,7 @@ footer{text-align:center;color:#64748b;font-size:10px;padding:25px 12px}
 
 <section id="favoritesView" class="view">
   <button class="back" onclick="goHome()" data-i18n="back">← بازگشت به خانه</button>
-  <h2 data-i18n="favoritesTitle">لغت‌های موردعلاقه ⭐</h2>
-  <div id="favoriteList"></div>
+  <h2 data-i18n="favoritesTitle">لغت‌های موردعلاقه ⭐</h2><div id="favoriteList"></div>
 </section>
 
 <section id="grammarView" class="view"><button class="back" onclick="goHome()" data-i18n="back">← بازگشت به خانه</button><div class="coming"><div class="big">🎓</div><h2 data-i18n="grammar">آکادمی گرامر</h2><span data-i18n="coming">این بخش در مرحله بعدی توسعه ساخته می‌شه.</span></div></section>
@@ -283,15 +230,14 @@ footer{text-align:center;color:#64748b;font-size:10px;padding:25px 12px}
   </div>
   <div class="small" data-i18n="statsNote">آمار آزمون‌ها به‌صورت خودکار ذخیره می‌شود.</div>
 </section>
-
 </main>
+
 <footer>Farhad's English Lab · Learn something new every day</footer>
 
 <script>
 "use strict";
 
 /* DATABASE */
-
 const words=[
 {w:"Ability",p:"/əˈbɪləti/",m:"توانایی",d:"The skill or power to do something.",e:"She has the ability to learn quickly.",et:"او توانایی یادگیری سریع را دارد.",l:"A2",c:"learning"},
 {w:"Achieve",p:"/əˈtʃiːv/",m:"به دست آوردن، موفق شدن",d:"To succeed in doing something.",e:"You can achieve your goals.",et:"تو می‌توانی به هدف‌هایت برسی.",l:"B1",c:"learning"},
@@ -316,7 +262,6 @@ const words=[
 ];
 
 /* TRANSLATIONS */
-
 const translations={
 fa:{
 tagline:"فضای شخصی یادگیری زبان انگلیسی",welcome:"به آزمایشگاه زبان انگلیسی خوش اومدی!",welcomeSub:"هر روز کمی تمرین کن و قدم‌به‌قدم پیشرفت کن.",
@@ -340,9 +285,9 @@ listen:"🔊 شنیدن تلفظ",definition:"تعریف ساده انگلیسی
 speechUnavailable:"قابلیت پخش صدا در این مرورگر در دسترس نیست.",learnedTotal:"تعداد کلمات یادگرفته‌شده",learnedPageNote:"هر کلمه‌ای را که یاد گرفتی از دیکشنری به این فهرست اضافه کن.",
 seeLearned:"دیدن کلمات یادگرفته‌شده",pronIntro:"در این بخش با حروف، صداها و نمادهای آوانگاری انگلیسی آشنا می‌شوی.",
 alphabet:"الفبا",vowels:"مصوت‌ها",consonants:"صامت‌ها",minimalPairs:"صداهای مشابه",soundPractice:"تمرین",
-play:"🔊 پخش صدا",letterHint:"نام حرف",soundHint:"صدای حرف",pairHint:"به تفاوت تلفظ دو کلمه گوش کن.",
+play:"🔊 پخش کلمه نمونه",letterHint:"نام حرف",pairHint:"به تفاوت تلفظ دو کلمه گوش کن.",
 practiceTitle:"تمرین شنیداری",practiceInstruction:"کلمه‌ای را که می‌شنوی انتخاب کن.",playQuestion:"🔊 پخش کلمه",correctAnswer:"آفرین! درست انتخاب کردی.",wrongAnswer:"این بار درست نبود. پاسخ درست: ",
-nextPractice:"سؤال بعدی",noVoice:"قابلیت پخش صدا در این مرورگر فعال نیست.",soundNote:"تلفظ‌ها با صدای گفتاری دستگاه پخش می‌شوند. نوع لهجه به صدای نصب‌شده روی گوشی بستگی دارد."
+nextPractice:"سؤال بعدی",noVoice:"قابلیت پخش صدا در این مرورگر فعال نیست.",soundNote:"نمادهای IPA خوانده نمی‌شوند؛ دکمه صدا کلمه نمونه را پخش می‌کند. نوع لهجه به صدای نصب‌شده روی گوشی بستگی دارد."
 },
 en:{
 tagline:"Your personal English learning space",welcome:"Welcome to Farhad's English Lab!",welcomeSub:"Practice a little every day and improve step by step.",
@@ -366,15 +311,14 @@ listen:"🔊 Listen",definition:"Simple English definition",exampleLabel:"Exampl
 speechUnavailable:"Speech is not available in this browser.",learnedTotal:"Learned words",learnedPageNote:"Add words to this list from the dictionary when you learn them.",
 seeLearned:"See learned words",pronIntro:"Learn English letters, sounds and phonetic symbols in this section.",
 alphabet:"Alphabet",vowels:"Vowels",consonants:"Consonants",minimalPairs:"Similar sounds",soundPractice:"Practice",
-play:"🔊 Play sound",letterHint:"Letter name",soundHint:"Letter sound",pairHint:"Listen to the difference between the two words.",
+play:"🔊 Play example word",letterHint:"Letter name",pairHint:"Listen to the difference between the two words.",
 practiceTitle:"Listening Practice",practiceInstruction:"Choose the word you hear.",playQuestion:"🔊 Play word",
 correctAnswer:"Well done! That's correct.",wrongAnswer:"Not this time. Correct answer: ",nextPractice:"Next question",
-noVoice:"Speech is not available in this browser.",soundNote:"Pronunciation uses your device's speech voice. The accent depends on the voices installed on your phone."
+noVoice:"Speech is not available in this browser.",soundNote:"IPA symbols are not spoken; the audio button plays the example word. Accent depends on your device's installed voice."
 }
 };
 
 /* STORAGE */
-
 function readStorage(key,fallback){
   try{const v=localStorage.getItem(key);return v===null?fallback:JSON.parse(v)}
   catch(e){return fallback}
@@ -394,15 +338,12 @@ if(!quizStats||!Number.isFinite(quizStats.correct)||!Number.isFinite(quizStats.w
 }
 let current=null,answered=false,currentChoices=[];
 
-/* HELPERS */
-
 function t(key){return translations[currentLang][key]||key}
 function saveFavorites(){writeStorage("farhadFavorites",favorites)}
 function saveLearned(){writeStorage("farhadLearnedWords",learnedWords)}
 function saveQuizStats(){writeStorage("farhadQuizStats",quizStats)}
 
 /* LANGUAGE */
-
 function applyLanguage(){
   document.documentElement.lang=currentLang;
   document.documentElement.dir=currentLang==="fa"?"rtl":"ltr";
@@ -422,7 +363,6 @@ document.getElementById("languageToggle").addEventListener("click",()=>{
 });
 
 /* NAVIGATION */
-
 function openView(id){
   document.querySelectorAll(".view").forEach(v=>v.classList.remove("active"));
   const target=document.getElementById(id);if(!target)return;
@@ -438,20 +378,20 @@ function openView(id){
 function goHome(){openView("homeView")}
 
 /* SPEECH */
-
 function speakWord(word){
   if(!("speechSynthesis" in window)){alert(t("speechUnavailable"));return}
+  if(typeof word!=="string"||!word.trim())return;
   window.speechSynthesis.cancel();
   const utterance=new SpeechSynthesisUtterance(word);
-  utterance.lang="en-US";utterance.rate=0.85;
+  utterance.lang="en-US";
+  utterance.rate=0.85;
   const voices=window.speechSynthesis.getVoices();
-  const american=voices.find(v=>v.lang==="en-US");
+  const american=voices.find(v=>v.lang&&v.lang.toLowerCase()==="en-us");
   if(american)utterance.voice=american;
   window.speechSynthesis.speak(utterance);
 }
 
 /* DICTIONARY */
-
 function makeCard(word){
   const saved=favorites.includes(word.w);
   const learned=learnedWords.includes(word.w);
@@ -470,7 +410,6 @@ function makeCard(word){
     </div>
   </div>`;
 }
-
 function searchWords(){
   const input=document.getElementById("search"),list=document.getElementById("wordList");
   if(!input||!list)return;
@@ -509,7 +448,6 @@ function renderLearned(){
 }
 
 /* QUIZ */
-
 function nextQuestion(){
   answered=false;current=words[Math.floor(Math.random()*words.length)];
   document.getElementById("question").textContent=current.w;
@@ -545,10 +483,8 @@ function checkAnswer(button,answer){
   if(answer!==current.m)button.classList.add("wrong");
   document.getElementById("feedback").textContent=answer===current.m?t("right"):t("wrong")+current.m;
 }
-document.getElementById("nextQuestionButton").addEventListener("click",nextQuestion);
 
 /* PROGRESS */
-
 function updateProgress(){
   const count=learnedWords.length;
   const percentage=Math.min((count/4000)*100,100);
@@ -565,55 +501,109 @@ function updateQuizStats(){
   document.getElementById("statWrong").textContent=quizStats.wrong;
   document.getElementById("statAccuracy").textContent=accuracy+"%";
 }
+document.getElementById("nextQuestionButton").addEventListener("click",nextQuestion);
 
 /* PRONUNCIATION DATA */
 
+/* Alphabet: [letter, letter-name IPA] */
 const alphabet=[
-["A","/eɪ/","name"],["B","/biː/","name"],["C","/siː/","name"],["D","/diː/","name"],
-["E","/iː/","name"],["F","/ef/","name"],["G","/dʒiː/","name"],["H","/eɪtʃ/","name"],
-["I","/aɪ/","name"],["J","/dʒeɪ/","name"],["K","/keɪ/","name"],["L","/el/","name"],
-["M","/em/","name"],["N","/en/","name"],["O","/oʊ/","name"],["P","/piː/","name"],
-["Q","/kjuː/","name"],["R","/ɑːr/","name"],["S","/es/","name"],["T","/tiː/","name"],
-["U","/juː/","name"],["V","/viː/","name"],["W","/ˈdʌbəl.juː/","name"],["X","/eks/","name"],
-["Y","/waɪ/","name"],["Z","/ziː/","name"]
+["A","/eɪ/"],["B","/biː/"],["C","/siː/"],["D","/diː/"],
+["E","/iː/"],["F","/ɛf/"],["G","/dʒiː/"],["H","/eɪtʃ/"],
+["I","/aɪ/"],["J","/dʒeɪ/"],["K","/keɪ/"],["L","/ɛl/"],
+["M","/ɛm/"],["N","/ɛn/"],["O","/oʊ/"],["P","/piː/"],
+["Q","/kjuː/"],["R","/ɑr/"],["S","/ɛs/"],["T","/tiː/"],
+["U","/juː/"],["V","/viː/"],["W","/ˈdʌbəl.juː/"],["X","/ɛks/"],
+["Y","/waɪ/"],["Z","/ziː/"]
 ];
 
+/* Vowels: [IPA symbol, example word, Persian explanation] */
 const vowelSounds=[
-["/iː/","see","صدای ای کشیده"],["/ɪ/","sit","صدای ای کوتاه"],["/e/","bed","صدای اِ"],
-["/æ/","cat","صدای اَ باز"],["/ɑː/","father","صدای آ"],["/ɔː/","thought","صدای آ گرد"],
-["/ʊ/","book","صدای او کوتاه"],["/uː/","blue","صدای او کشیده"],["/ʌ/","cup","صدای اَ کوتاه"],
-["/ɝ/","bird","صدای اِر آمریکایی"],["/ə/","about","صدای شوا؛ ضعیف و کوتاه"],
-["/eɪ/","day","ترکیب اِی"],["/aɪ/","my","ترکیب آی"],["/ɔɪ/","boy","ترکیب اُی"],
-["/aʊ/","now","ترکیب آو"],["/oʊ/","go","ترکیب اُو"],["/ɪr/","near","صدای ایر"],
-["/er/","hair","صدای اِر"],["/ʊr/","tour","صدای اور"],["/ɑr/","car","صدای آر"]
+["/i/","see","صدای ای؛ مانند see"],
+["/ɪ/","sit","ای کوتاه؛ مانند sit"],
+["/ɛ/","bed","صدای اِ؛ مانند bed"],
+["/æ/","cat","اَ باز؛ مانند cat"],
+["/ɑ/","father","آ؛ مانند father"],
+["/ɔ/","thought","آی گرد؛ مانند thought (در برخی لهجه‌های آمریکایی با /ɑ/ یکی می‌شود)"],
+["/ʊ/","book","او کوتاه؛ مانند book"],
+["/u/","blue","او کشیده؛ مانند blue"],
+["/ʌ/","cup","صدای کوتاه؛ مانند cup"],
+["/ɝ/","bird","صدای اِر آمریکایی؛ مانند bird"],
+["/ə/","about","شوا؛ صدای ضعیف و کوتاه در about"],
+["/eɪ/","day","ترکیب اِی؛ مانند day"],
+["/aɪ/","my","ترکیب آی؛ مانند my"],
+["/ɔɪ/","boy","ترکیب اُی؛ مانند boy"],
+["/aʊ/","now","ترکیب آو؛ مانند now"],
+["/oʊ/","go","ترکیب اُو؛ مانند go"],
+["/ɪr/","near","صدای نزدیک به ایر؛ مانند near"],
+["/ɛr/","hair","صدای اِر؛ مانند hair"],
+["/ʊr/","tour","صدای اور؛ مانند tour"],
+["/ɑr/","car","صدای آر آمریکایی؛ مانند car"]
 ];
 
+/* Consonants: [IPA symbol, example word, Persian explanation] */
 const consonantSounds=[
-["/p/","pen","پ"],["/b/","book","ب"],["/t/","tea","ت"],["/d/","dog","د"],
-["/k/","cat","ک"],["/g/","go","گ"],["/f/","fish","ف"],["/v/","very","و"],
-["/θ/","think","ث؛ نوک زبان بین دندان‌ها"],["/ð/","this","ذ؛ صدای لرزشی"],["/s/","sun","س"],["/z/","zoo","ز"],
-["/ʃ/","ship","ش"],["/ʒ/","vision","ژ"],["/h/","hat","ه"],["/tʃ/","chair","چ"],
-["/dʒ/","job","ج"],["/m/","man","م"],["/n/","no","ن"],["/ŋ/","sing","نگ"],
-["/l/","leg","ل"],["/r/","red","ر انگلیسی"],["/j/","yes","ی"],["/w/","we","و"]
+["/p/","pen","پ؛ بدون لرزش تارهای صوتی"],
+["/b/","book","ب؛ با لرزش تارهای صوتی"],
+["/t/","tea","ت"],
+["/d/","dog","د"],
+["/k/","cat","ک"],
+["/ɡ/","go","گ"],
+["/f/","fish","ف"],
+["/v/","very","و؛ با تماس دندان بالا و لب پایین"],
+["/θ/","think","th بی‌صدا؛ نوک زبان کمی بین دندان‌ها"],
+["/ð/","this","th صدادار؛ نوک زبان کمی بین دندان‌ها"],
+["/s/","sun","س"],
+["/z/","zoo","ز"],
+["/ʃ/","ship","ش"],
+["/ʒ/","vision","ژ"],
+["/h/","hat","ه"],
+["/tʃ/","chair","چ"],
+["/dʒ/","job","ج"],
+["/m/","man","م"],
+["/n/","no","ن"],
+["/ŋ/","sing","صدای پایانی sing؛ یک صدای واحد"],
+["/l/","leg","ل"],
+["/ɹ/","red","R آمریکایی؛ زبان نمی‌لرزد"],
+["/j/","yes","ی"],
+["/w/","we","و"]
 ];
 
+/* Minimal pairs: word 1, word 2, sound 1, sound 2 */
 const minimalPairs=[
-["ship","sheep","/ɪ/","/iː/"],["bit","beat","/ɪ/","/iː/"],
-["full","fool","/ʊ/","/uː/"],["cap","cup","/æ/","/ʌ/"],
-["fan","van","/f/","/v/"],["think","sink","/θ/","/s/"],
-["thin","then","/θ/","/ð/"],["rice","lice","/r/","/l/"],
-["light","right","/l/","/r/"],["bad","bed","/æ/","/e/"]
+["ship","sheep","/ɪ/","/i/"],
+["bit","beat","/ɪ/","/i/"],
+["full","fool","/ʊ/","/u/"],
+["cap","cup","/æ/","/ʌ/"],
+["fan","van","/f/","/v/"],
+["think","sink","/θ/","/s/"],
+["thin","then","/θ/","/ð/"],
+["rice","lice","/ɹ/","/l/"],
+["light","right","/l/","/ɹ/"],
+["bad","bed","/æ/","/ɛ/"]
 ];
 
 let activePronTab="alphabet";
 let practiceAnswer=null;
 let practiceChoices=[];
+let practiceAnswered=false;
 
-function soundCard(item){
+/* IMPORTANT FIX:
+   IPA symbols are displayed only.
+   Speech always plays the real example word. */
+function phonemeCard(item){
   return `<div class="sound-card">
-    <div class="sound-symbol">${item[1]}</div>
-    <div class="sound-example">${item[0]}</div>
+    <div class="sound-symbol">${item[0]}</div>
+    <div class="sound-example">${item[1]}</div>
     <div class="sound-info">${item[2]||""}</div>
+    <button class="action-btn" onclick="speakWord('${item[1]}')">${t("play")}</button>
+  </div>`;
+}
+
+function alphabetCard(item){
+  return `<div class="sound-card">
+    <div class="sound-symbol">${item[0]}</div>
+    <div class="sound-example">${item[1]}</div>
+    <div class="sound-info">${t("letterHint")}</div>
     <button class="action-btn" onclick="speakWord('${item[0]}')">${t("play")}</button>
   </div>`;
 }
@@ -625,22 +615,38 @@ function renderPronunciation(){
   });
 
   if(activePronTab==="alphabet"){
-    box.innerHTML=`<div class="card"><h3>${t("alphabet")}</h3><p class="small">${currentLang==="fa"?"نام حروف انگلیسی را بشنو و با شکل نوشتاری آن‌ها آشنا شو.":"Listen to the names of the English letters."}</p><div class="sound-grid">${alphabet.map(a=>soundCard([a[0],a[1],t("letterHint")])).join("")}</div></div>`;
+    box.innerHTML=`<div class="card">
+      <h3>${t("alphabet")}</h3>
+      <p class="small">${currentLang==="fa"?"نام حروف انگلیسی را بشنو و با شکل نوشتاری آن‌ها آشنا شو.":"Listen to the names of the English letters."}</p>
+      <div class="sound-grid">${alphabet.map(alphabetCard).join("")}</div>
+    </div>`;
   }
   else if(activePronTab==="vowels"){
-    box.innerHTML=`<div class="card"><h3>${t("vowels")}</h3><p class="small">${currentLang==="fa"?"مصوت‌ها صداهایی هستند که هنگام تولید آن‌ها جریان هوا بدون انسداد کامل از دهان خارج می‌شود. این فهرست یک مدل آموزشی گسترده است و همه لهجه‌ها دقیقاً یکسان نیستند.":"Vowels are produced without a complete blockage of airflow. This is a broad teaching list; accents differ."}</p><div class="sound-grid">${vowelSounds.map(a=>soundCard(a)).join("")}</div></div>`;
+    box.innerHTML=`<div class="card">
+      <h3>${t("vowels")}</h3>
+      <p class="small">${currentLang==="fa"?"مصوت‌ها صداهایی هستند که هنگام تولید آن‌ها جریان هوا بدون انسداد کامل از دهان خارج می‌شود. نمادها بر اساس یک نمایش آموزشی نزدیک به انگلیسی آمریکایی انتخاب شده‌اند؛ تلفظ بعضی صداها بین گویش‌ها فرق دارد.":"Vowels are produced without a complete blockage of airflow. These symbols follow a broadly American-oriented teaching model; pronunciation varies by accent."}</p>
+      <div class="sound-grid">${vowelSounds.map(phonemeCard).join("")}</div>
+    </div>`;
   }
   else if(activePronTab==="consonants"){
-    box.innerHTML=`<div class="card"><h3>${t("consonants")}</h3><p class="small">${currentLang==="fa"?"در تولید صامت‌ها، جریان هوا در بخشی از مسیر گفتار محدود یا مسدود می‌شود.":"Consonants are made with some restriction or closure in the vocal tract."}</p><div class="sound-grid">${consonantSounds.map(a=>soundCard(a)).join("")}</div></div>`;
+    box.innerHTML=`<div class="card">
+      <h3>${t("consonants")}</h3>
+      <p class="small">${currentLang==="fa"?"در تولید صامت‌ها، جریان هوا در بخشی از مسیر گفتار محدود یا مسدود می‌شود. برای شنیدن هر صدا، روی دکمه زیر کلمه نمونه بزن.":"Consonants are made with some restriction or closure in the vocal tract. Press the button to hear the example word."}</p>
+      <div class="sound-grid">${consonantSounds.map(phonemeCard).join("")}</div>
+    </div>`;
   }
   else if(activePronTab==="pairs"){
-    box.innerHTML=`<div class="card"><h3>${t("minimalPairs")}</h3><p class="small">${t("pairHint")}</p>${minimalPairs.map(pair=>`<div class="sound-card" style="margin-bottom:9px">
-      <div class="sound-example">${pair[0]} <span style="color:var(--gold)">/</span> ${pair[1]}</div>
-      <div class="sound-info">${pair[2]} &nbsp; | &nbsp; ${pair[3]}</div>
-      <div class="actions">
-        <button class="action-btn" onclick="speakWord('${pair[0]}')">${pair[0]} 🔊</button>
-        <button class="action-btn" onclick="speakWord('${pair[1]}')">${pair[1]} 🔊</button>
-      </div></div>`).join("")}</div>`;
+    box.innerHTML=`<div class="card">
+      <h3>${t("minimalPairs")}</h3><p class="small">${t("pairHint")}</p>
+      ${minimalPairs.map(pair=>`<div class="sound-card" style="margin-bottom:9px">
+        <div class="sound-example">${pair[0]} <span style="color:var(--gold)">/</span> ${pair[1]}</div>
+        <div class="sound-info">${pair[2]} &nbsp; | &nbsp; ${pair[3]}</div>
+        <div class="actions">
+          <button class="action-btn" onclick="speakWord('${pair[0]}')">${pair[0]} 🔊</button>
+          <button class="action-btn" onclick="speakWord('${pair[1]}')">${pair[1]} 🔊</button>
+        </div>
+      </div>`).join("")}
+    </div>`;
   }
   else if(activePronTab==="practice"){
     makePractice();
@@ -660,6 +666,7 @@ function makePractice(){
   practiceAnswer=Math.random()<0.5?pool[0]:pool[1];
   practiceChoices=[pool[0],pool[1]];
   if(Math.random()<0.5)practiceChoices.reverse();
+  practiceAnswered=false;
 
   box.innerHTML=`<div class="card">
     <h3>${t("practiceTitle")}</h3>
@@ -674,6 +681,8 @@ function makePractice(){
   </div>`;
 }
 function checkPractice(choice,button){
+  if(practiceAnswered)return;
+  practiceAnswered=true;
   const feedback=document.getElementById("practiceFeedback");
   document.querySelectorAll("#practiceOptions button").forEach(b=>{
     b.disabled=true;
@@ -687,7 +696,6 @@ function checkPractice(choice,button){
 }
 
 /* START */
-
 applyLanguage();
 
 if("serviceWorker" in navigator){
