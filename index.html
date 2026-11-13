@@ -489,24 +489,35 @@ list.map(makeCard).join(""):
 }
 
 function nextQuestion(){
-answered=false;
-current=words[Math.floor(Math.random()*words.length)];
+    answered = false;
+    current = words[Math.floor(Math.random() * words.length)];
 
-document.getElementById("question").textContent=current.w;
-document.getElementById("feedback").textContent="";
+    document.getElementById("question").textContent = current.w;
+    document.getElementById("feedback").textContent = "";
 
-let choices=[current.m];
+    let choices = [current.m];
 
-while(choices.length<4){
-const choice=words[Math.floor(Math.random()*words.length)].m;
-if(!choices.includes(choice))choices.push(choice);
-}
+    while (choices.length < 4) {
+        const choice = words[Math.floor(Math.random() * words.length)].m;
 
-choices.sort(()=>Math.random()-.5);
+        if (!choices.includes(choice)) {
+            choices.push(choice);
+        }
+    }
 
-document.getElementById("options").innerHTML=choices.map(x=>
-`<button class="option" onclick="checkAnswer(this,${JSON.stringify(x)})">${x}</button>`
-).join("");
+    choices.sort(() => Math.random() - 0.5);
+
+    const optionsContainer = document.getElementById("options");
+
+    optionsContainer.innerHTML = choices.map(x =>
+        `<button class="option" type="button">${x}</button>`
+    ).join("");
+
+    optionsContainer.querySelectorAll(".option").forEach(btn => {
+        btn.addEventListener("click", function() {
+            checkAnswer(this, this.textContent);
+        });
+    });
 }
 
 function checkAnswer(btn,answer){
